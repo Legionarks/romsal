@@ -2,6 +2,7 @@ package com.github.legionarks.model.property;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -21,6 +22,7 @@ public class PropertyAttribute implements Serializable {
     @JoinColumn(name = "PROPERTY_ID", nullable = false)
     private Property property;
 
+    @Column(name = "AMOUNT")
     private Short amount;
 
 }
