@@ -1,0 +1,35 @@
+.featured {
+  position: absolute;
+  transform: rotate(-45deg);
+  background: var(--bs-secondary);
+  font-size: 12px;
+  width: 100px;
+  top: 20px;
+  left: -10px;
+}
+
+.status {
+  font-size: 12px;
+  display: block;
+}
+
+.status-wrapper {
+  background: rgb(47,79,79,0.8);
+}
+
+.description-wrapper {
+  background: linear-gradient(rgb(128,128,128, 0.1), Black);
+}
+
+@media (min-width: 992px) {
+  .card-left {
+    max-width: 40%;
+  }
+}
+
+#slideshow {
+}
+
+#videos {
+}
+

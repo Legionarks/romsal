@@ -21,7 +21,7 @@ public class LoginResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance login() {
-        return Templates.login();
+        return Templates.index();
     }
 
     @GET
@@ -29,6 +29,6 @@ public class LoginResource {
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({"ADMIN"})
     public TemplateInstance test() {
-        return Templates.login();
+        return Templates.index();
     }
 }

@@ -1,0 +1,30 @@
+.highlight {
+  background-color: var(--bs-primary);
+  padding: 50px 0;
+}
+
+.highlight p {
+  color: #c4d5ef;
+  line-height: 1.5;
+}
+
+.highlight h2 {
+  font-weight: normal;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  padding-top: 0;
+  margin-top: 0;
+  color: #fff;
+}
+
+.highlight-content {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.highlight-image {
+  max-height: 400px;
+  filter: brightness(75%);
+}
+

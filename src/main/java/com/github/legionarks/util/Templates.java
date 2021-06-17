@@ -6,5 +6,5 @@ import io.quarkus.qute.TemplateInstance;
 @CheckedTemplate
 public class Templates {
 
-    public static native TemplateInstance login();
+    public static native TemplateInstance index();
 }
