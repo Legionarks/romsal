@@ -21,12 +21,6 @@
   background: linear-gradient(rgb(128,128,128, 0.1), Black);
 }
 
-@media (min-width: 992px) {
-  .card-left {
-    max-width: 40%;
-  }
-}
-
 #slideshow {
 }
 
