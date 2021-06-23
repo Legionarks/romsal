@@ -1,0 +1,3 @@
+Create symbolic link from this directory to static resources of the web server
+
+~/JAVA/romsal/src/main/resources/META-INF/resources# sudo ln -s /root/JAVA/romsal/storage/ storage

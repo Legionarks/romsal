@@ -36,4 +36,5 @@ nb-configuration.xml
 .env
 
 # Others
-/src/main/resources/designs/export/
+src/main/resources/designs/export/
+storage/properties
