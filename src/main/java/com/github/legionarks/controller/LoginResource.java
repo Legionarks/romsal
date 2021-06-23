@@ -17,7 +17,7 @@ public class LoginResource {
 
     @Inject
     UserDao data;
-    
+
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance login() {
@@ -27,7 +27,7 @@ public class LoginResource {
     @GET
     @Path("test")
     @Produces(MediaType.TEXT_HTML)
-    @RolesAllowed({"ADMIN"})
+    @RolesAllowed({ "ADMIN" })
     public TemplateInstance test() {
         return Templates.index();
     }

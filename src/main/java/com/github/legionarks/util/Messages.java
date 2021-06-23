@@ -3,9 +3,6 @@ package com.github.legionarks.util;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.enterprise.context.ApplicationScoped;
-
-@ApplicationScoped
 public class Messages {
 
     private String language;

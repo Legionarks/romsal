@@ -1,16 +1,11 @@
 package com.github.legionarks.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.github.legionarks.util.Messages;
 import com.github.legionarks.util.Templates;
 
 import io.quarkus.qute.TemplateInstance;
@@ -19,58 +14,59 @@ import io.quarkus.qute.TemplateInstance;
 @Produces(MediaType.TEXT_HTML)
 public class PropertyResource {
 
-    @Inject
-    Messages messages;
-
     @GET
     public TemplateInstance main() {
-        Map<String, String> map = new HashMap<>();
+        final Transcript transcript = new Transcript().defaults();
 
-        map.put("title", messages.getBundle().getString("property.search.title"));
-        map.put("phrase", messages.getBundle().getString("property.search.phrase"));
-        map.put("category-all", messages.getBundle().getString("property.search.form.category.all"));
-        map.put("category-sell", messages.getBundle().getString("property.search.form.category.sell"));
-        map.put("category-rent", messages.getBundle().getString("property.search.form.category.rent"));
-        map.put("form-name", messages.getBundle().getString("property.search.form.name"));
-        map.put("form-type", messages.getBundle().getString("property.search.form.type"));
-        map.put("form-currency", messages.getBundle().getString("property.search.form.currency"));
-        map.put("form-search", messages.getBundle().getString("property.search"));
+        transcript.put("title", "property.search.title");
+        transcript.put("phrase", "property.search.phrase");
+        transcript.put("category-all", "property.search.form.category.all");
+        transcript.put("category-sell", "property.search.form.category.sell");
+        transcript.put("category-rent", "property.search.form.category.rent");
+        transcript.put("form-name", "property.search.form.name");
+        transcript.put("form-type", "property.search.form.type");
+        transcript.put("form-currency", "property.search.form.currency");
+        transcript.put("form-search", "property.search");
 
-        return Templates.property().data("map", map);
+        return Templates.property().data("map", transcript.getMap());
     }
 
     @GET
     @Path("info")
     public TemplateInstance info(@QueryParam("id") Integer id) {
-        Map<String, String> map = new HashMap<>();
+        final Transcript transcript = new Transcript();
 
-        map.put("category-all", messages.getBundle().getString("property.search.form.category.all"));
-        map.put("category-sell", messages.getBundle().getString("property.search.form.category.sell"));
-        map.put("category-rent", messages.getBundle().getString("property.search.form.category.rent"));
-        map.put("form-name", messages.getBundle().getString("property.search.form.name"));
-        map.put("form-type", messages.getBundle().getString("property.search.form.type"));
-        map.put("form-currency", messages.getBundle().getString("property.search.form.currency"));
+        transcript.defaults();
 
-        return Templates.info().data("map", map);
+        transcript.put("category-all", "property.search.form.category.all");
+        transcript.put("category-sell", "property.search.form.category.sell");
+        transcript.put("category-rent", "property.search.form.category.rent");
+        transcript.put("form-name", "property.search.form.name");
+        transcript.put("form-type", "property.search.form.type");
+        transcript.put("form-currency", "property.search.form.currency");
+
+        return Templates.info().data("map", transcript.getMap());
     }
 
     @GET
     @Path("search")
     public TemplateInstance search() {
-        Map<String, String> map = new HashMap<>();
+        final Transcript transcript = new Transcript();
 
-        map.put("orders", messages.getBundle().getString("property.search.order.newer"));
-        map.put("filter", messages.getBundle().getString("property.search.filter"));
-        map.put("form-name", messages.getBundle().getString("property.search.form.name"));
-        map.put("form-type", messages.getBundle().getString("property.search.form.type"));
+        transcript.defaults();
 
-        map.put("form-bath", messages.getBundle().getString("property.search.form.bath"));
-        map.put("form-room", messages.getBundle().getString("property.search.form.room"));
-        map.put("form-category", messages.getBundle().getString("property.search.form.category"));
-        map.put("form-currency", messages.getBundle().getString("property.search.form.currency"));
-        map.put("form-search", messages.getBundle().getString("property.search"));
+        transcript.put("orders", "property.search.order.newer");
+        transcript.put("filter", "property.search.filter");
+        transcript.put("form-name", "property.search.form.name");
+        transcript.put("form-type", "property.search.form.type");
 
-        return Templates.search().data("map", map);
+        transcript.put("form-bath", "property.search.form.bath");
+        transcript.put("form-room", "property.search.form.room");
+        transcript.put("form-category", "property.search.form.category");
+        transcript.put("form-currency", "property.search.form.currency");
+        transcript.put("form-search", "property.search");
+
+        return Templates.search().data("map", transcript.getMap());
     }
 
     private enum Category {

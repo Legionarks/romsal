@@ -1,16 +1,12 @@
 package com.github.legionarks.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.github.legionarks.util.Messages;
 import com.github.legionarks.util.Templates;
 
 import io.quarkus.qute.TemplateInstance;
@@ -21,21 +17,23 @@ public class HomeResource {
 
     @GET
     public TemplateInstance main() {
-        final DefaultResource resource = new DefaultResource();
-        resource.create();
-        
-        resource.add("welcome", "home.welcome");
-        resource.add("welcome-1", "home.welcome.phrase.phase.1");
-        resource.add("welcome-2", "home.welcome.phrase.phase.2");
+        final Transcript transcript = new Transcript().defaults();
 
-        resource.add("project", "home.project");
-        resource.add("project-phrase", "home.project.phrase");
+        transcript.put("welcome", "home.welcome");
+        transcript.put("welcome-1", "home.welcome.phrase.phase.1");
+        transcript.put("welcome-2", "home.welcome.phrase.phase.2");
 
-        resource.add("service", "home.service");
-        //resource.add("service-1", List.of(messages.getBundle().getString("home.service.title.1"), messages.getBundle().getString("home.service.phrase.1")));
-        //resource.add("service-2", List.of(messages.getBundle().getString("home.service.title.2"), messages.getBundle().getString("home.service.phrase.2")));
-        //resource.add("service-3", List.of(messages.getBundle().getString("home.service.title.3"), messages.getBundle().getString("home.service.phrase.3")));
+        transcript.put("project", "home.project");
+        transcript.put("project-phrase", "home.project.phrase");
 
-        return Templates.index().data("map", resource.getMap());
+        transcript.put("service", "home.service");
+        transcript.put("service-1",
+                List.of(transcript.get("home.service.title.1"), transcript.get("home.service.phrase.1")));
+        transcript.put("service-2",
+                List.of(transcript.get("home.service.title.2"), transcript.get("home.service.phrase.2")));
+        transcript.put("service-3",
+                List.of(transcript.get("home.service.title.3"), transcript.get("home.service.phrase.3")));
+
+        return Templates.index().data("map", transcript.getMap());
     }
 }
