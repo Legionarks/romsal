@@ -1,23 +1,20 @@
 package com.github.legionarks.model.property;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "LOCATION")
-public class Location {
+public class Location implements Serializable {
 
     @Id
-    @Column(name = "PROPERTY_ID")
-    private Long id;
-
     @OneToOne
-    @MapsId
     @JoinColumn(name = "PROPERTY_ID")
     private Property property;
 

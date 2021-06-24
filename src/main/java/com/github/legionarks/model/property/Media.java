@@ -1,6 +1,6 @@
 package com.github.legionarks.model.property;
 
-import java.nio.file.Path;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,15 +11,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "MEDIA")
-public class Media {
+public class Media implements Serializable {
 
     @Id
     @Column(name = "ID")
     private Long id;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "PROPERTY_ID", nullable = false)
+    @JoinColumn(name = "PROPERTY_ID")
     private Property property;
 
-    //private Path path;
+    @Column(name = "NAME")
+    private String name;
 }

@@ -11,13 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -50,7 +49,7 @@ public class Property {
     private Set<PropertyAttribute> attributes;
 
     @ManyToMany
-    @Column(name = "FEATURES")
+    @JoinTable(joinColumns = @JoinColumn(name = "PROPERTY_ID"), inverseJoinColumns = @JoinColumn(name = "FEATURE_ID"))
     private Set<Feature> features;
 
     @OneToMany(mappedBy = "property")
@@ -63,8 +62,8 @@ public class Property {
     @Column(name = "SUMMARY")
     private String summary;
 
-    @OneToOne(mappedBy = "property", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "LOCATION")
+    @OneToOne
+    @JoinColumn(name = "LOCATION")
     private Location location;
 
     @Column(name = "ADD_DATE")

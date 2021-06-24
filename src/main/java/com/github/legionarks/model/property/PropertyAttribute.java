@@ -16,10 +16,12 @@ public class PropertyAttribute implements Serializable {
 
     @Id
     @OneToOne
+    @JoinColumn(name = "ATTRIBUTE_ID")
     private Attribute attribute;
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "PROPERTY_ID", nullable = false)
+    @JoinColumn(name = "PROPERTY_ID")
     private Property property;
 
     @Column(name = "AMOUNT")
