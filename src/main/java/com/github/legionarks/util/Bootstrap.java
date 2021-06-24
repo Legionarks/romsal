@@ -1,5 +1,7 @@
 package com.github.legionarks.util;
 
+import java.math.BigDecimal;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -35,7 +37,7 @@ public class Bootstrap {
     }
 
     private void loadProperties() {
-        propertyService.add();
+        propertyService.add("Casa de bibi", "La casa de la loqita fanatica de los juegos y qsy...", BigDecimal.valueOf(15000), null, true);
     }
 
     public void loadRoles() {
