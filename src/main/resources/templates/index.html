@@ -52,30 +52,30 @@
                 <div class="carousel slide carousel-dark d-none d-lg-flex justify-content-center px-5" data-bs-ride="carousel" id="carousel-lg">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <div class="card-group gap-4">
-                                {#for property in map.properties}
+                            <div class="card-group gap-4"></div>
                                 <div class="card border rounded-0">
                                     <div class="card textwhite text-white overflow-hidden">
                                         <div class="row card-img-overlay">
+                                            {#if property.outstanding}
                                             <div class="col text-start"><span class="text-center featured">Destacado</span></div>
+                                            {/if}
                                             <div class="col">
-                                                <div class="float-end px-2 py-1 status-wrapper"><span class="status">En venta</span></div>
+                                                <div class="float-end px-2 py-1 status-wrapper"><span class="status">{property.category.type}</span></div>
                                             </div>
                                         </div><img class="card-img w-100 d-block" src="https://images.adsttc.com/media/images/5d34/e507/284d/d109/5600/0240/newsletter/_FI.jpg?1563747560">
                                         <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
                                             <div class="description-wrapper">
                                                 <div class="text-start m-3">
-                                                    <h6 class="m-0"></h6><strong>US$150,000.00</strong>
+                                                    <h6 class="m-0"></h6><strong>{property.price}</strong>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="card-title">Title</h4>
-                                        <p class="text-muted card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, ege&nbsp;<br><br></p>
+                                        <h4 class="card-title">{property.name}</h4>
+                                        <p class="text-muted card-text">{property.description}&nbsp;<br><br></p>
                                     </div>
                                 </div>
-                                {/for}
                             </div>
                         </div>
                     </div>
