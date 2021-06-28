@@ -61,6 +61,4 @@ public class PropertyService {
     public void setCategoryData(CategoryDao categoryData) {
         this.categoryData = categoryData;
     }
-
-    
 }

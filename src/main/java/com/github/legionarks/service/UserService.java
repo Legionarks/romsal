@@ -1,20 +1,12 @@
 package com.github.legionarks.service;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import com.github.legionarks.dao.RoleDao;
 import com.github.legionarks.dao.UserDao;
-import com.github.legionarks.model.User;
 import com.github.legionarks.model.role.Role;
 import com.github.legionarks.model.role.RoleType;
-
-import io.quarkus.elytron.security.common.BcryptUtil;
 
 @ApplicationScoped
 public class UserService {
@@ -22,6 +14,22 @@ public class UserService {
     @Inject
     UserDao data;
 
+    @Inject
+    RoleDao roleDao;
+
+    public void roles() {
+        Role role;
+
+        role = new Role();
+        role.setType(RoleType.ADMIN);
+        roleDao.create(role);
+
+        role = new Role();
+        role.setType(RoleType.USER);
+        roleDao.create(role);
+    }
+
+    /*
     public void add(String username, String password, Set<Role> roles) {
         User user = new User();
 
@@ -39,7 +47,7 @@ public class UserService {
             Role role;
 
             role = new Role();
-            role.setRole(type.name());
+            role.setRole(type);
             roles.add(role);
         });
 
@@ -51,4 +59,5 @@ public class UserService {
 
         this.add(username, password, roles);
     }
+    */
 }

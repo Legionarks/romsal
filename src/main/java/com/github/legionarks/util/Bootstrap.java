@@ -7,9 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import com.github.legionarks.model.property.CategoryType;
-import com.github.legionarks.model.role.RoleType;
 import com.github.legionarks.service.PropertyService;
-import com.github.legionarks.service.RoleService;
 import com.github.legionarks.service.UserService;
 
 import io.quarkus.runtime.Startup;
@@ -20,35 +18,27 @@ public class Bootstrap {
 
     @Inject
     PropertyService propertyService;
-    
-    @Inject
-    UserService userService;
 
     @Inject
-    RoleService roleService;
+    UserService userService;
 
     public Bootstrap() {
     }
 
     @PostConstruct
     public void init() {
-        roles();
         properties();
-        //users();
-    }
-
-    public void roles() {
-        roleService.add(RoleType.ADMIN);
-        roleService.add(RoleType.USER);
+        users();
     }
 
     private void properties() {
         propertyService.categories();
-        propertyService.add("Casa de bibi", "La casa de la loqita fanatica de los juegos y qsy...", BigDecimal.valueOf(15000), CategoryType.RENT, true);
+        propertyService.add("Casa de bibi", "La casa de la loqita fanatica de los juegos y qsy...",
+                BigDecimal.valueOf(15000), CategoryType.RENT, true);
     }
 
     public void users() {
-        userService.add("user", "user", "USER");
-        userService.add("admin", "admin", "ADMIN");
+        // userService.add("user", "user", "USER");
+        // userService.add("admin", "admin", "ADMIN");
     }
 }
