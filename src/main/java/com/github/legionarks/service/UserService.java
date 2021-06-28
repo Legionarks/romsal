@@ -5,8 +5,8 @@ import javax.inject.Inject;
 
 import com.github.legionarks.dao.RoleDao;
 import com.github.legionarks.dao.UserDao;
-import com.github.legionarks.model.role.Role;
-import com.github.legionarks.model.role.RoleType;
+import com.github.legionarks.model.user.role.Role;
+import com.github.legionarks.model.user.role.RoleType;
 
 @ApplicationScoped
 public class UserService {

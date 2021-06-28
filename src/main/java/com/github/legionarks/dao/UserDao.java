@@ -2,7 +2,7 @@ package com.github.legionarks.dao;
 
 import javax.inject.Singleton;
 
-import com.github.legionarks.model.User;
+import com.github.legionarks.model.user.User;
 
 @Singleton
 public class UserDao extends Datasource<User> {

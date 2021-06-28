@@ -8,12 +8,12 @@
   left: -10px;
 }
 
-.status {
+.card-category {
   font-size: 12px;
   display: block;
 }
 
-.status-wrapper {
+.card-category-wrapper {
   background: rgb(47,79,79,0.8);
 }
 

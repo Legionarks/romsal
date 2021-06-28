@@ -1,4 +1,4 @@
-package com.github.legionarks.model.property;
+package com.github.legionarks.model.property.feature;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

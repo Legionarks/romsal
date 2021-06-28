@@ -7,9 +7,9 @@ import javax.inject.Inject;
 
 import com.github.legionarks.dao.CategoryDao;
 import com.github.legionarks.dao.PropertyDao;
-import com.github.legionarks.model.property.Category;
-import com.github.legionarks.model.property.CategoryType;
 import com.github.legionarks.model.property.Property;
+import com.github.legionarks.model.property.category.Category;
+import com.github.legionarks.model.property.category.CategoryType;
 
 @ApplicationScoped
 public class PropertyService {

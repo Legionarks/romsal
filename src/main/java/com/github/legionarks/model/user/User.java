@@ -1,4 +1,4 @@
-package com.github.legionarks.model;
+package com.github.legionarks.model.user;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.github.legionarks.model.role.Role;
+import com.github.legionarks.model.user.role.Role;
 
 import io.quarkus.security.jpa.Password;
 import io.quarkus.security.jpa.Roles;

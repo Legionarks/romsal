@@ -1,4 +1,4 @@
-package com.github.legionarks.model.role;
+package com.github.legionarks.model.property.category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,28 +9,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import io.quarkus.security.jpa.RolesValue;
-
 @Entity
-@Table(name = "ROLE")
-public class Role {
+@Table(name = "CATEGORY")
+public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Short id;
 
-    @RolesValue
     @Enumerated(EnumType.STRING)
     @Column(name = "TYPE", unique = true)
-    private RoleType type;
+    private CategoryType type;
 
-    public RoleType getType() {
+    public CategoryType getType() {
         return type;
     }
 
-    public void setType(RoleType type) {
+    public void setType(CategoryType type) {
         this.type = type;
     }
-
 }

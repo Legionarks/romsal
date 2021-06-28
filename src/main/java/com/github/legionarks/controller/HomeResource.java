@@ -13,7 +13,6 @@ import com.github.legionarks.service.PropertyService;
 import com.github.legionarks.util.Templates;
 
 import io.quarkus.qute.TemplateInstance;
-import io.smallrye.common.annotation.Blocking;
 
 @Path("")
 @Produces(MediaType.TEXT_HTML)
@@ -23,7 +22,6 @@ public class HomeResource {
     PropertyService propertyService;
 
     @GET
-    @Blocking
     public TemplateInstance main() {
         final Transcript transcript = new Transcript().defaults();
 
@@ -42,17 +40,13 @@ public class HomeResource {
         transcript.put("service-3",
                 List.of(transcript.get("home.service.title.3"), transcript.get("home.service.phrase.3")));
 
-        transcript.put("properties", propertyService.getData().findAll());
-
         return Templates.index().data("map", transcript.getMap());
     }
 
     @GET
-    @Blocking
+    @Path("api/properties")
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("123")
-    public List<Property> name() {
-            
+    public List<Property> properties() {
         return propertyService.getData().findAll();
     }
 }

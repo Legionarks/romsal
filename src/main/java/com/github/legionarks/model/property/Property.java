@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.github.legionarks.model.property.attribute.PropertyAttribute;
+import com.github.legionarks.model.property.category.Category;
+import com.github.legionarks.model.property.feature.Feature;
 
 @Entity
 @Table(name = "PROPERTY")
@@ -44,14 +49,14 @@ public class Property {
     @JoinColumn(name = "CATEGORY")
     private Category category;
 
-    @OneToMany(mappedBy = "property")
+    @OneToMany(mappedBy = "property", fetch = FetchType.EAGER)
     private Set<PropertyAttribute> attributes;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "PROPERTY_ID"), inverseJoinColumns = @JoinColumn(name = "FEATURE_ID"))
     private Set<Feature> features;
 
-    @OneToMany(mappedBy = "property")
+    @OneToMany(mappedBy = "property", fetch = FetchType.EAGER)
     private Set<Media> medias;
 
     @Column(name = "ADDRESS")

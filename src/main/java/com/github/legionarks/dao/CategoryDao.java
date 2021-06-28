@@ -2,7 +2,7 @@ package com.github.legionarks.dao;
 
 import javax.inject.Singleton;
 
-import com.github.legionarks.model.property.Category;
+import com.github.legionarks.model.property.category.Category;
 
 @Singleton
 public class CategoryDao extends Datasource<Category> {
