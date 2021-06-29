@@ -8,7 +8,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.github.legionarks.model.property.Property;
 import com.github.legionarks.service.PropertyService;
 import com.github.legionarks.util.Templates;
 
@@ -41,12 +40,5 @@ public class HomeResource {
                 List.of(transcript.get("home.service.title.3"), transcript.get("home.service.phrase.3")));
 
         return Templates.index().data("map", transcript.getMap());
-    }
-
-    @GET
-    @Path("api/properties")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Property> properties() {
-        return propertyService.getData().findAll();
     }
 }
