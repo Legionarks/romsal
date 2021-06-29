@@ -4,31 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>contact</title>
+    <title>main</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/contact.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/generic/cards.css">
-    <link rel="stylesheet" href="assets/css/generic/fields.css">
-    <link rel="stylesheet" href="assets/css/generic/general.css">
-    <link rel="stylesheet" href="assets/css/generic/highlight.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/scss/custom-colors.compiled.css">
+    <link rel="stylesheet" href="assets/css/contact.css?h=4f713701a6cfcc9d5d5b2770e610078c">
+    <link rel="stylesheet" href="assets/css/footer.css?h=e9b0850f22ad51fa74cf747a2998f8eb">
+    <link rel="stylesheet" href="assets/css/generic/cards.css?h=c1366984cb203dab7a99a26489902cee">
+    <link rel="stylesheet" href="assets/css/generic/fields.css?h=a3fd52f6785712ad3201dc899f0c34be">
+    <link rel="stylesheet" href="assets/css/generic/general.css?h=44dcaaed3318fe53593506dc316bb184">
+    <link rel="stylesheet" href="assets/css/generic/highlight.css?h=de10cb38c5475825bbac2117f770edd0">
+    <link rel="stylesheet" href="assets/css/navbar.css?h=577b20b93b5424a25761882d234f6cc4">
+    <link rel="stylesheet" href="assets/css/scss/custom-colors.compiled.css?h=c56b082155acdada91dfdcb9dcf23b85">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        {#include navbar}ERROR{/}
-    </header>
+    <header>{#include navbar/}</header>
     <main>
         <section class="highlight">
             <div class="container">
@@ -38,23 +29,23 @@
         </section>
         <div class="wrapper">
             <div class="container-fluid border rounded-0 shadow contact-form">
-                <form class="p-5">
+                <form class="p-5" method="post" action="/contact">
                     <div class="row row-cols-1 row-cols-md-2">
                         <div class="col">
                             <div class="row row-cols-1 gap-4">
                                 <div class="col">
-                                    <div class="form-floating input-data"><input class="form-control" type="text" id="name" name="name" placeholder="Tu nombre"><label class="form-label" for="name">Nombre</label></div>
+                                    <div class="form-floating input-data"><input type="text" class="form-control" id="name" name="name" placeholder="Nombre" /><label class="form-label" for="name">Nombre</label></div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-floating input-data"><input class="form-control" type="tel" id="telephone" placeholder="(809) 580 - 1111" name="telephone"><label class="form-label" for="telephone">Numero telefonico</label></div>
+                                    <div class="form-floating input-data"><input type="tel" class="form-control" id="telephone" placeholder="Número telefónico" name="telephone" /><label class="form-label" for="telephone">Número telefónico</label></div>
                                 </div>
                                 <div class="col">
-                                    <div class="form-floating input-data"><input class="form-control" type="email" id="email" name="email" placeholder="name@example.com"><label class="form-label" for="email">Correo electronico</label></div>
+                                    <div class="form-floating input-data"><input type="email" class="form-control" id="email" name="email" placeholder="Correo electrónico" /><label class="form-label" for="email">Correo electrónico</label></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col mt-4 mt-md-0"><textarea class="form-control" placeholder="Mensaje" style="height: 92%;" rows="5"></textarea>
-                            <hr>
+                        <div class="col mt-4 mt-md-0"><textarea class="form-control" placeholder="Mensaje" style="height: 92%;" rows="5" name="message"></textarea>
+                            <hr />
                         </div>
                     </div>
                     <div class="row row-cols-1 row-cols-md-2 mt-3">
@@ -67,26 +58,22 @@
         <div class="container mt-5 mb-4">
             <section>
                 <h2 class="section-title">Información de contacto<br><br></h2>
-                <div class="row g-0 locations">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 locations gy-4">
                     <div class="col">
-                        <div class="border rounded-0 shadow-sm p-4">
+                        <div class="border rounded-0 shadow-sm d-inline-block p-4 w-100">
                             <h5>Santiago de los Caballeros</h5>
-                            <p style="font-weight: bold;"><strong>C/ Parada Vieja, Res. María Alejandra I 2do Nivel</strong><br></p><span style="font-weight: bold;"><strong>+56 2 2897 9190</strong><br><br></span>
+                            <p style="font-weight: bold;"><strong>C/ Parada Vieja, Res. María Alejandra I 2do Nivel</strong><br></p><span class="fw-bold"><strong>(809) 820 - 0897</strong><br></span>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-        <section class="map"><iframe allowfullscreen="" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDmO0JHOHAXY2C3Ud49KbMSwFf3APep1Ow&amp;q=Paris%2C+France&amp;zoom=11" class="map" width="100%" height="400"></iframe></section>
+        <section><iframe allowfullscreen="" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDmO0JHOHAXY2C3Ud49KbMSwFf3APep1Ow&amp;q=Paris%2C+France&amp;zoom=11" id="map" width="100%" height="400"></iframe></section>
     </main>
-    <footer></footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <footer>{#include footer/}</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="assets/js/formatter/currency.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="assets/js/moving-letters.js"></script>
+    <script src="assets/js/contact.js?h=d41d8cd98f00b204e9800998ecf8427e"></script>
+    <script src="assets/js/formatter/currency.js?h=c473d08532b05fe5816ebe43c24db8a0"></script>
 </body>
 
 </html>

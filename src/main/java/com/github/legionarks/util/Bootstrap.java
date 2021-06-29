@@ -6,7 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import com.github.legionarks.model.Contact;
 import com.github.legionarks.model.property.category.CategoryType;
+import com.github.legionarks.service.ContactService;
 import com.github.legionarks.service.PropertyService;
 import com.github.legionarks.service.UserService;
 
@@ -22,6 +24,9 @@ public class Bootstrap {
     @Inject
     UserService userService;
 
+    @Inject
+    ContactService contactService;
+
     public Bootstrap() {
     }
 
@@ -29,6 +34,7 @@ public class Bootstrap {
     public void init() {
         properties();
         users();
+        contact();
     }
 
     private void properties() {
@@ -45,5 +51,15 @@ public class Bootstrap {
 
         // userService.add("user", "user", "USER");
         // userService.add("admin", "admin", "ADMIN");
+    }
+
+    private void contact() {
+        Contact contact;
+
+        contact = new Contact();
+        contact.setCity("Santiago de los Caballeros");
+        contact.setAddress("C/ Parada Vieja, Res. María Alejandra I 2do Nivel");
+        contact.setPhone("(809) 820 - 0897");
+        contactService.getData().create(contact);
     }
 }
