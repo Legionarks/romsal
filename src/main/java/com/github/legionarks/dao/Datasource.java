@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 public abstract class Datasource<T> {
 
     @Inject
-    EntityManager manager;
+    protected EntityManager manager;
 
     private Class<T> clazz;
 

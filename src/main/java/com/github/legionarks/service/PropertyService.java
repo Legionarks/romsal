@@ -5,11 +5,14 @@ import java.math.BigDecimal;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import com.github.legionarks.dao.CategoryDao;
-import com.github.legionarks.dao.PropertyDao;
+import com.github.legionarks.dao.property.CategoryDao;
+import com.github.legionarks.dao.property.PropertyDao;
+import com.github.legionarks.dao.property.TypeDao;
 import com.github.legionarks.model.property.Property;
 import com.github.legionarks.model.property.category.Category;
 import com.github.legionarks.model.property.category.CategoryType;
+import com.github.legionarks.model.property.type.PropertyType;
+import com.github.legionarks.model.property.type.Type;
 
 @ApplicationScoped
 public class PropertyService {
@@ -20,18 +23,27 @@ public class PropertyService {
     @Inject
     CategoryDao categoryData;
 
+    @Inject
+    TypeDao typeDao;
+
     public void categories() {
         Category category;
 
-        category = new Category();
-        category.setType(CategoryType.SELL);
-        categoryData.create(category);
+        for (CategoryType type : CategoryType.values()) {
+            category = new Category();
+            category.setType(type);
+            categoryData.create(category);
+        }
+    }
 
-        category = new Category();
-        category.setType(CategoryType.RENT);
-        categoryData.create(category);
+    public void types() {
+        Type type;
 
-        System.out.println("\n\n\n\n" + categoryData.find(CategoryType.RENT.name()));
+        for (PropertyType xtype : PropertyType.values()) {
+            type = new Type();
+            type.setType(xtype);
+            typeDao.create(type);
+        }
     }
 
     public void add(String name, String description, BigDecimal price, CategoryType category, Boolean outstanding) {

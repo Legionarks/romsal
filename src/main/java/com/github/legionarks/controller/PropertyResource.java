@@ -11,10 +11,10 @@ import com.github.legionarks.util.Templates;
 import io.quarkus.qute.TemplateInstance;
 
 @Path("property")
-@Produces(MediaType.TEXT_HTML)
 public class PropertyResource {
 
     @GET
+    @Produces(MediaType.TEXT_HTML)
     public TemplateInstance main() {
         final Transcript transcript = new Transcript().defaults();
 
@@ -33,6 +33,7 @@ public class PropertyResource {
 
     @GET
     @Path("info")
+    @Produces(MediaType.TEXT_HTML)
     public TemplateInstance info(@QueryParam("id") Integer id) {
         final Transcript transcript = new Transcript();
 
@@ -50,6 +51,7 @@ public class PropertyResource {
 
     @GET
     @Path("search")
+    @Produces(MediaType.TEXT_HTML)
     public TemplateInstance search() {
         final Transcript transcript = new Transcript();
 

@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import com.github.legionarks.model.property.attribute.PropertyAttribute;
 import com.github.legionarks.model.property.category.Category;
 import com.github.legionarks.model.property.feature.Feature;
+import com.github.legionarks.model.property.type.Type;
 
 @Entity
 @Table(name = "PROPERTY")
@@ -44,6 +45,10 @@ public class Property {
 
     @Column(name = "OUTSTANDING")
     private Boolean outstanding;
+
+    @OneToOne
+    @JoinColumn(name = "TYPE")
+    private Type type;
 
     @ManyToOne
     @JoinColumn(name = "CATEGORY")

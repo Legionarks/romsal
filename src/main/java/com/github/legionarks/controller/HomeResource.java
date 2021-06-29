@@ -15,13 +15,13 @@ import com.github.legionarks.util.Templates;
 import io.quarkus.qute.TemplateInstance;
 
 @Path("")
-@Produces(MediaType.TEXT_HTML)
 public class HomeResource {
 
     @Inject
     PropertyService propertyService;
 
     @GET
+    @Produces(MediaType.TEXT_HTML)
     public TemplateInstance main() {
         final Transcript transcript = new Transcript().defaults();
 
