@@ -42,6 +42,8 @@ public class ContactResource {
         
         transcript.put("contacts", service.getData().findAll());
 
+        System.out.println(service.getData().findAll());
+
         return Templates.contact().data("map", transcript.getMap());
     }
 

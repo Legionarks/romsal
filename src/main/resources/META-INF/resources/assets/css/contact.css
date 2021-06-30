@@ -30,6 +30,10 @@ textarea {
   border-bottom: 2px solid silver;
 }
 
+.locations > div {
+  display: inline-block;
+}
+
 .locations .col div:hover {
   background: #f1f1f1;
 }
