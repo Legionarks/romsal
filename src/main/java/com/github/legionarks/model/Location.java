@@ -22,6 +22,14 @@ public class Location {
     @Column(name = "LONGITUDE")
     private Float longitude;
 
+    public Location() {
+    }
+
+    public Location(Float latitude, Float longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public Float getLatitude() {
         return latitude;
     }

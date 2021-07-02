@@ -13,7 +13,7 @@ public class CategoryDao extends Datasource<Category> {
     }
 
     public Category find(String name) {
-        return manager.createQuery("FROM Category WHERE TYPE = ?1", Category.class).setParameter(1, name)
+        return manager.createQuery("FROM Category WHERE TYPE = :name", Category.class).setParameter("name", name)
                 .getSingleResult();
     }
 }

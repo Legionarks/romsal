@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,11 +42,18 @@ public class Property {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Column(name = "ADDRESS")
+    private String address;
+
     @Column(name = "PRICE")
     private BigDecimal price;
 
     @Column(name = "OUTSTANDING")
     private Boolean outstanding;
+
+    @Lob
+    @Column(name = "SUMMARY")
+    private String summary;
 
     @OneToOne
     @JoinColumn(name = "TYPE")
@@ -55,26 +63,19 @@ public class Property {
     @JoinColumn(name = "CATEGORY")
     private Category category;
 
-    @OneToMany(mappedBy = "property", fetch = FetchType.EAGER)
-    private Set<PropertyAttribute> attributes;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(joinColumns = @JoinColumn(name = "PROPERTY_ID"), inverseJoinColumns = @JoinColumn(name = "FEATURE_ID"))
-    private Set<Feature> features;
-
-    @OneToMany(mappedBy = "property", fetch = FetchType.EAGER)
-    private Set<Media> medias;
-
-    @Column(name = "ADDRESS")
-    private String address;
-
-    @Lob
-    @Column(name = "SUMMARY")
-    private String summary;
-
     @OneToOne
     @JoinColumn(name = "LOCATION")
     private Location location;
+
+    @OneToMany(mappedBy = "property", fetch = FetchType.EAGER)
+    private Set<PropertyAttribute> attributes;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = @JoinColumn(name = "PROPERTY_ID"), inverseJoinColumns = @JoinColumn(name = "FEATURE_ID"))
+    private Set<Feature> features;
+
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Media> medias;
 
     @Column(name = "ADD_DATE")
     private Date addDate;
@@ -98,6 +99,14 @@ public class Property {
         this.description = description;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
@@ -114,12 +123,36 @@ public class Property {
         this.outstanding = outstanding;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Set<PropertyAttribute> getAttributes() {
@@ -144,30 +177,6 @@ public class Property {
 
     public void setMedias(Set<Media> medias) {
         this.medias = medias;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
     }
 
     public Date getAddDate() {

@@ -13,6 +13,6 @@ public class TypeDao extends Datasource<Type> {
     }
 
     public Type find(String name) {
-        return manager.createQuery("FROM Type WHERE TYPE = ?1", Type.class).setParameter(1, name).getSingleResult();
+        return manager.createQuery("FROM Type WHERE TYPE = :name", Type.class).setParameter("name", name).getSingleResult();
     }
 }

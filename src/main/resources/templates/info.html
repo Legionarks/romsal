@@ -4,20 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>contact</title>
+    <title>main</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
-    <link rel="stylesheet" href="../assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="../assets/css/footer.css">
-    <link rel="stylesheet" href="../assets/css/generic/general.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css?h=28fcdefe8a87593f1f43b7d9951e0cba">
+    <link rel="stylesheet" href="/assets/css/footer.css?h=e9b0850f22ad51fa74cf747a2998f8eb">
+    <link rel="stylesheet" href="/assets/css/generic/general.css?h=44dcaaed3318fe53593506dc316bb184">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="../assets/css/login.css">
-    <link rel="stylesheet" href="../assets/css/navbar.css">
-    <link rel="stylesheet" href="../assets/css/property/info.css">
-    <link rel="stylesheet" href="../assets/css/scss/custom-colors.compiled.css">
+    <link rel="stylesheet" href="/assets/css/navbar.css?h=577b20b93b5424a25761882d234f6cc4">
+    <link rel="stylesheet" href="/assets/css/property/info.css?h=87d94c8e4f30c6ed815dcce2bcbe6954">
+    <link rel="stylesheet" href="/assets/css/scss/custom-colors.compiled.css?h=c56b082155acdada91dfdcb9dcf23b85">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
 </head>
@@ -94,64 +93,57 @@
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h4 class="card-title">RESIDENCIAS GARDEN LIFE – APARTAMENTO TIPO B Y C<br></h4>
-                            <h6 class="d-flex align-items-center card-subtitle mb-2"><i class="material-icons m-1">location_on</i>Santo Domingo</h6>
+                            <h4 class="text-break d-flex card-title">{map.property.name}<i class="fas fa-star ms-auto ps-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="left" style="color: var(--bs-primary);" title="Destacada"></i></h4>
+                            <h6 class="d-flex align-items-center card-subtitle mb-2"><i class="material-icons m-1">location_on</i>Ciudad</h6>
                             <ul class="list-group list-group-horizontal text-truncate bg-white d-flex">
-                                <li class="list-group-item border-0 p-2"><span><i class="fas fa-bed p-2"></i>1</span></li>
-                                <li class="list-group-item border-0 p-2"><span><i class="fas fa-bath p-2"></i>1</span></li>
-                                <li class="list-group-item border-0 p-2"><span><i class="fas fa-car-alt p-2"></i>1</span></li>
-                                <li class="list-group-item border-0 p-2"><span><i class="fas fa-ruler-combined p-2"></i>300 m²</span></li>
+                                <li class="list-group-item border-0 p-2"><span><i class="fas fa-bed p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Habitaciones"></i>1</span></li>
+                                <li class="list-group-item border-0 p-2"><span><i class="fas fa-bath p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Baños"></i>1</span></li>
+                                <li class="list-group-item border-0 p-2"><span><i class="fas fa-car-alt p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Parqueos"></i>1</span></li>
+                                <li class="list-group-item border-0 p-2"><span><i class="fas fa-ruler-combined p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Área"></i>1 m²</span></li>
                             </ul>
-                            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</p>
+                            <p>{map.property.description}</p>
                         </div>
                         <div class="card-footer d-flex">
-                            <h1>US$140,000</h1>
+                            <h2 class="my-auto">US${map.property.price}</h2>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row d-none d-md-flex my-4">
                 <div class="col-2">
-                    <div class="card h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg"></div>
+                    <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg"></div>
                 </div>
                 <div class="col-2">
-                    <div class="card h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://www.rocketmortgage.com/resources-cmsassets/RocketMortgage.com/Article_Images/Large_Images/TypesOfHomes/types-of-homes-hero.jpg"></div>
+                    <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://www.rocketmortgage.com/resources-cmsassets/RocketMortgage.com/Article_Images/Large_Images/TypesOfHomes/types-of-homes-hero.jpg"></div>
                 </div>
                 <div class="col-2">
-                    <div class="card h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg?crop=1.00xw:0.752xh;0,0.120xh&amp;resize=1200:*"></div>
+                    <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg?crop=1.00xw:0.752xh;0,0.120xh&amp;resize=1200:*"></div>
                 </div>
                 <div class="col-2">
-                    <div class="card h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg"></div>
+                    <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg"></div>
                 </div>
                 <div class="col-2">
-                    <div class="card h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://cdn.vox-cdn.com/thumbor/6itLJS9BZ-B5gXPjM1AB_z-ZKVI=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/65890203/iStock_1067331614.7.jpg"></div>
+                    <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://cdn.vox-cdn.com/thumbor/6itLJS9BZ-B5gXPjM1AB_z-ZKVI=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/65890203/iStock_1067331614.7.jpg"></div>
                 </div>
                 <div class="col-2">
-                    <div class="card h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://plantationhomes.com.au/cms_uploads/images/15861_six-stages-of-building-a-home.jpg"></div>
+                    <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://plantationhomes.com.au/cms_uploads/images/15861_six-stages-of-building-a-home.jpg"></div>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row my-4">
                 <div class="col-lg-8">
                     <div class="mb-4">
                         <h4 class="section-title">Características</h4>
                         <hr>
                         <ul class="list-unstyled row row-cols-3" id="features">
                             <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
-                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
-                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
-                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
-                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
-                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
-                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
-                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
                         </ul>
                     </div>
                     <div class="mb-4">
                         <h4 class="section-title">Resumen</h4>
                         <hr>
-                        <p>¡Renta All Inclusive en Joaquina!<br><br>¿A quién no le gustaría vivir en Col. del Valle? Conoce Joaquina y renta tu departamento amueblado con todos los servicios incluidos, amenidades únicas y una ubicación inigualable.<br><br>Renta Fácil – Sin aval ni fianza y con recibo fiscal.<br><br>Renta All Inclusive – Todos los servicios incluidos en tu renta: agua, luz, gas, internet de alta velocidad, televisión por cable, línea telefónica.<br><br>Edificio 100% remodelado – Ventanas, pisos y muros acústicos..<br><br>Diferentes tipos de departamentos - Lofts y departamentos de 1 y 2 recámaras.<br><br>¿Mascotas? ¡Nos encantan! Contamos con amenidades Pet Friendly.<br><br><br><br>¡Nuestras instalaciones únicas te encantarán!<br><br>- Sala de cine<br><br>- Cocina / comedor en terraza<br><br>- Roof deck con salas y asadores exteriores<br><br>- Áreas de Home Office individual y para conferencia<br><br>- Pet Zone<br><br>- Gimnasio multifuncional con tecnología Mirror<br><br>- Área de juegos<br><br>- Cocina de entretenimiento<br><br>- Tecnología de acceso al edificio remoto con llaves virtuales<br><br><br><br>Joaquina es nueva forma de vivir en CDMX con departamentos de renta fácil, All Inclusive y amenidades únicas. Vive en una de las zonas más conectadas de la Ciudad, a pocos metros de Av. Insurgentes, a 2 cuadras del WTC México, centros comerciales, restaurantes, Metrobús, y más.<br><br><br><br>Todos los departamentos incluyen cocinas integrales completas, refrigerador, estufa, closets, WIFI y más.</p>
+                        <p>{map.property.summary}</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -161,38 +153,38 @@
                             <hr>
                             <h5 class="section-title">Mensaje al anunciante<br></h5>
                         </div>
-                        <form>
+                        <form method="post">
                             <div class="row gap-3">
                                 <div class="col-12">
-                                    <div class="form-floating"><input class="form-control" type="email" id="email" name="email" placeholder="name@example.com"><label class="form-label" for="email">Correo electronico</label></div>
+                                    <div class="form-floating"><input class="form-control" type="email" id="email" name="email" placeholder="Correo electrónico"><label class="form-label" for="email">Correo electrónico</label></div>
                                 </div>
                                 <div class="col-6 pe-0">
-                                    <div class="form-floating"><input class="form-control" type="text" id="name" placeholder="Nombre"><label class="form-label name">Nombre</label></div>
+                                    <div class="form-floating"><input class="form-control" type="text" id="name" placeholder="Nombre" name="name"><label class="form-label" id="name" for="name">Nombre</label></div>
                                 </div>
                                 <div class="col ps-0">
-                                    <div class="form-floating"><input class="form-control" type="tel" id="telephone" placeholder="Telefono"><label class="form-label" for="telephone">Telefono</label></div>
+                                    <div class="form-floating"><input class="form-control" type="tel" id="phone" placeholder="Teléfono" name="phone"><label class="form-label" for="phone">Teléfono</label></div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-floating"><textarea class="form-control" id="message" name="message" placeholder="message" style="height: 100px;"></textarea><label class="form-label" for="message">Mensaje</label></div>
+                                    <div class="form-floating"><textarea class="form-control" id="message" name="message" placeholder="Mensaje" style="height: 100px;"></textarea><label class="form-label" for="message">Mensaje</label></div>
                                 </div>
                                 <div class="col">
-                                    <div class="btn-group-vertical w-100 gap-2" role="group"><button class="btn btn-primary rounded-3" type="button">Enviar formulario</button><button class="btn btn-primary rounded-3" type="button">Contactar por WhatsApp<i class="fab fa-whatsapp ps-2"></i></button></div>
+                                    <div class="btn-group-vertical w-100 gap-2" role="group"><button class="btn btn-primary rounded-3" type="submit">Enviar formulario</button><button class="btn btn-primary rounded-3" type="button">Contactar por WhatsApp<i class="fab fa-whatsapp ps-2"></i></button></div>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div><iframe allowfullscreen="" frameborder="0" loading="lazy" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDmO0JHOHAXY2C3Ud49KbMSwFf3APep1Ow&amp;q=Paris%2C+France&amp;zoom=11" class="mt-4" width="100%" height="400"></iframe>
+        </div>
+        <div id="map" class="w-100" style="height: 400px;"></div>
     </main>
     <footer></footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/bs-init.js"></script>
+    <script src="/assets/js/bs-init.js?h=7265b1488dcf69b8a52816ef73c57595"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="../assets/js/formatter/currency.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="../assets/js/moving-letters.js"></script>
+    <script src="/assets/js/formatter/currency.js?h=c473d08532b05fe5816ebe43c24db8a0"></script>
+    <script src="/assets/js/info.js?h=5eafb816d3f35d7e5c8ece199b51fd8c"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmO0JHOHAXY2C3Ud49KbMSwFf3APep1Ow&amp;region=DO&amp;language=es&amp;callback=initMap"></script>
 </body>
 
 </html>
