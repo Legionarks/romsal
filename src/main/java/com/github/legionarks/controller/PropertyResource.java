@@ -1,17 +1,23 @@
 package com.github.legionarks.controller;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.github.legionarks.model.property.Property;
+import com.github.legionarks.service.PropertyService;
 import com.github.legionarks.util.Templates;
 
 import io.quarkus.qute.TemplateInstance;
 
 @Path("property")
 public class PropertyResource {
+
+    @Inject
+    PropertyService service;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -34,8 +40,9 @@ public class PropertyResource {
     @GET
     @Path("info")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance info(@QueryParam("id") Integer id) {
+    public TemplateInstance info(@QueryParam("id") Long id) {
         final Transcript transcript = new Transcript();
+        Property property = service.getPropertyDao().find(id);
 
         transcript.defaults();
 
@@ -45,6 +52,8 @@ public class PropertyResource {
         transcript.put("form-name", "property.search.form.name");
         transcript.put("form-type", "property.search.form.type");
         transcript.put("form-currency", "property.search.form.currency");
+        
+        transcript.put("property", property);
 
         return Templates.info().data("map", transcript.getMap());
     }

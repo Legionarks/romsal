@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +18,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.github.legionarks.model.Location;
 import com.github.legionarks.model.property.attribute.PropertyAttribute;
@@ -41,11 +46,18 @@ public class Property {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Column(name = "ADDRESS")
+    private String address;
+
     @Column(name = "PRICE")
     private BigDecimal price;
 
     @Column(name = "OUTSTANDING")
     private Boolean outstanding;
+
+    @Lob
+    @Column(name = "SUMMARY")
+    private String summary;
 
     @OneToOne
     @JoinColumn(name = "TYPE")
@@ -55,6 +67,10 @@ public class Property {
     @JoinColumn(name = "CATEGORY")
     private Category category;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "LOCATION")
+    private Location location;
+
     @OneToMany(mappedBy = "property", fetch = FetchType.EAGER)
     private Set<PropertyAttribute> attributes;
 
@@ -62,25 +78,24 @@ public class Property {
     @JoinTable(joinColumns = @JoinColumn(name = "PROPERTY_ID"), inverseJoinColumns = @JoinColumn(name = "FEATURE_ID"))
     private Set<Feature> features;
 
-    @OneToMany(mappedBy = "property", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Media> medias;
 
-    @Column(name = "ADDRESS")
-    private String address;
+    @Temporal(TemporalType.TIME)
+    @Column(name = "CREATED")
+    private Date created;
 
-    @Lob
-    @Column(name = "SUMMARY")
-    private String summary;
+    @Temporal(TemporalType.TIME)
+    @Column(name = "MODIFIED")
+    private Date modified;
 
-    @OneToOne
-    @JoinColumn(name = "LOCATION")
-    private Location location;
+    public Long getId() {
+        return id;
+    }
 
-    @Column(name = "ADD_DATE")
-    private Date addDate;
-
-    @Column(name = "EDIT_DATE")
-    private Date editDate;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -96,6 +111,14 @@ public class Property {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public BigDecimal getPrice() {
@@ -114,12 +137,36 @@ public class Property {
         this.outstanding = outstanding;
     }
 
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     public Category getCategory() {
         return category;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Set<PropertyAttribute> getAttributes() {
@@ -146,44 +193,30 @@ public class Property {
         this.medias = medias;
     }
 
-    public String getAddress() {
-        return address;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
-    public String getSummary() {
-        return summary;
+    public Date getModified() {
+        return modified;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void setModified(Date modified) {
+        this.modified = modified;
     }
 
-    public Location getLocation() {
-        return location;
+    @PrePersist
+    private void persist() {
+        created = modified = new Date();
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Date getAddDate() {
-        return addDate;
-    }
-
-    public void setAddDate(Date addDate) {
-        this.addDate = addDate;
-    }
-
-    public Date getEditDate() {
-        return editDate;
-    }
-
-    public void setEditDate(Date editDate) {
-        this.editDate = editDate;
+    @PreUpdate
+    private void update() {
+        modified = new Date();
     }
 
 }

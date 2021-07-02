@@ -23,7 +23,7 @@ public class ApiResource {
     @GET
     @Path("properties")
     public List<Property> properties() {
-        return propertyService.getData().findAll();
+        return propertyService.getPropertyDao().findAll();
     }
     
     @GET
