@@ -37,5 +37,4 @@ public class Attribute {
     public void setType(AttributeType type) {
         this.type = type;
     }
-
 }
