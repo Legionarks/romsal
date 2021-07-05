@@ -8,7 +8,6 @@ import com.github.legionarks.dao.property.CategoryDao;
 import com.github.legionarks.dao.property.FeatureDao;
 import com.github.legionarks.dao.property.PropertyDao;
 import com.github.legionarks.dao.property.TypeDao;
-import com.github.legionarks.model.property.Media;
 import com.github.legionarks.model.property.attribute.Attribute;
 import com.github.legionarks.model.property.attribute.AttributeType;
 import com.github.legionarks.model.property.category.Category;
@@ -114,9 +113,5 @@ public class PropertyService {
             feature.setType(type);
             featureDao.create(feature);
         }
-    }
-
-    public static void media(Media media) {
-        
     }
 }
