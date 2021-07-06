@@ -18,7 +18,8 @@ function carrousel(id, size, out) {
 
     const carousel = document.getElementById(id);
     const slides = carousel.getElementsByClassName("carousel-item").item(0);
-    const cards = slides.getElementsByClassName("card").item(0);
+    const cards = slides.getElementsByClassName("card-property").item(0);
+    const empty = slides.getElementsByClassName("card-comming").item(0);
 
     let slide;
 
@@ -44,6 +45,10 @@ function carrousel(id, size, out) {
         };
     });
 
+    for (var index = 1; index < Math.ceil(out.length / size) * size; index++) {
+        carousel.getElementsByClassName("card-group").item(0).innerHTML += empty.cloneNode(true).outerHTML;
+    };
+
     return carousel;
 };
 
@@ -53,14 +58,15 @@ function fill(card, property) {
     };
 
     if (property.category.type == "SELL") {
-        card.getElementsByClassName("card-category").item(1).remove();
+        card.getElementsByClassName("card-category").item(0).textContent = "En venta";
     } else if (property.category.type == "RENT") {
-        card.getElementsByClassName("card-category").item(0).remove();
+        card.getElementsByClassName("card-category").item(0).textContent = "En alquiler";
     };
 
-    card.getElementsByClassName("card-price").item(0).innerHTML = property.price;
-    card.getElementsByClassName("card-title").item(0).innerHTML = property.name;
-    card.getElementsByClassName("card-description").item(0).innerHTML = property.name;
+    card.getElementsByClassName("card-price").item(0).textContent = property.price;
+    card.getElementsByClassName("card-title").item(0).textContent = property.name;
+    card.getElementsByClassName("card-description").item(0).textContent = property.description;
+    card.getElementsByClassName("card-link").item(0).href = "/property/info?id=" + property.id;
 
     return card;
 };

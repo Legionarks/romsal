@@ -10,7 +10,7 @@ public class Templates {
 
     public static native TemplateInstance info();
 
-    public static native TemplateInstance property();
+    public static native TemplateInstance properties();
 
     public static native TemplateInstance search();
 

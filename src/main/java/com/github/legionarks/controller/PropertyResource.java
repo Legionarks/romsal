@@ -34,7 +34,7 @@ public class PropertyResource {
         transcript.put("form-currency", "property.search.form.currency");
         transcript.put("form-search", "property.search");
 
-        return Templates.property().data("map", transcript.getMap());
+        return Templates.properties().data("map", transcript.getMap());
     }
 
     @GET

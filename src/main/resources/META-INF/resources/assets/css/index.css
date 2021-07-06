@@ -17,3 +17,21 @@
   text-align: justify;
 }
 
+@media (min-width: 768px) {
+  #carousels img {
+    height: 200px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #carousels img {
+    height: 280px;
+  }
+}
+
+@media (min-width: 1400px) {
+  #carousels img {
+    height: 300px;
+  }
+}
+
