@@ -18,4 +18,6 @@ public class Templates {
 
     public static native TemplateInstance contact();
 
+    public static native TemplateInstance error();
+
 }

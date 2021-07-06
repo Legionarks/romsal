@@ -16,6 +16,6 @@ public class NotFound implements ExceptionMapper<NotFoundException> {
     @Produces(MediaType.TEXT_HTML)
     @Override
     public Response toResponse(NotFoundException exception) {
-        return Response.status(Status.NOT_FOUND).entity(Templates.index()).build();
+        return Response.status(Status.NOT_FOUND).entity(Templates.error()).build();
     }
 }
