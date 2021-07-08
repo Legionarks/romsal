@@ -1,5 +1,8 @@
 package com.github.legionarks.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -52,7 +55,7 @@ public class PropertyResource {
         transcript.put("form-name", "property.search.form.name");
         transcript.put("form-type", "property.search.form.type");
         transcript.put("form-currency", "property.search.form.currency");
-        
+
         transcript.put("property", property);
 
         return Templates.info().data("map", transcript.getMap());
@@ -61,8 +64,20 @@ public class PropertyResource {
     @GET
     @Path("search")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance search() {
+    public TemplateInstance search(@QueryParam("page") Short page, @QueryParam("project") String project, @QueryParam("type") String type,
+            @QueryParam("bath") String bath, @QueryParam("room") String room, @QueryParam("category") String category) {
         final Transcript transcript = new Transcript();
+
+        System.out.println("INI");
+        System.out.println(page);
+        System.out.println(project);
+        System.out.println(type);
+        System.out.println(bath);
+        System.out.println(room);
+        System.out.println(category);
+
+        //System.out.println(service.find(page, project, type, bath, room, category));
+        System.out.println("FIN");
 
         transcript.defaults();
 
