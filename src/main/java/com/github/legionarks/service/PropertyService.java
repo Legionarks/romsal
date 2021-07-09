@@ -1,8 +1,5 @@
 package com.github.legionarks.service;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -11,7 +8,6 @@ import com.github.legionarks.dao.property.CategoryDao;
 import com.github.legionarks.dao.property.FeatureDao;
 import com.github.legionarks.dao.property.PropertyDao;
 import com.github.legionarks.dao.property.TypeDao;
-import com.github.legionarks.model.property.Property;
 import com.github.legionarks.model.property.attribute.Attribute;
 import com.github.legionarks.model.property.attribute.AttributeType;
 import com.github.legionarks.model.property.category.Category;
@@ -117,9 +113,5 @@ public class PropertyService {
             feature.setType(type);
             featureDao.create(feature);
         }
-    }
-
-    public List<Property> find(Map<String, Object> criteria) {
-        return propertyDao.find(criteria);
     }
 }

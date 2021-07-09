@@ -16,7 +16,7 @@ public abstract class Datasource<T> {
     @Inject
     protected EntityManager manager;
 
-    private Class<T> clazz;
+    protected Class<T> clazz;
 
     public Datasource(Class<T> clazz) {
         this.clazz = clazz;

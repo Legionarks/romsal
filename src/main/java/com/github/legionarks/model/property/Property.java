@@ -21,8 +21,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.github.legionarks.model.Location;
 import com.github.legionarks.model.property.attribute.PropertyAttribute;
@@ -81,11 +79,9 @@ public class Property {
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Media> medias;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "CREATED")
     private Date created;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "MODIFIED")
     private Date modified;
 

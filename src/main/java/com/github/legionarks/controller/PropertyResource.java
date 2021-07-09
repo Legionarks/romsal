@@ -1,8 +1,5 @@
 package com.github.legionarks.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -64,8 +61,9 @@ public class PropertyResource {
     @GET
     @Path("search")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance search(@QueryParam("page") Short page, @QueryParam("project") String project, @QueryParam("type") String type,
-            @QueryParam("bath") String bath, @QueryParam("room") String room, @QueryParam("category") String category) {
+    public TemplateInstance search(@QueryParam("page") Short page, @QueryParam("project") String project,
+            @QueryParam("type") String type, @QueryParam("bath") String bath, @QueryParam("room") String room,
+            @QueryParam("category") String category) {
         final Transcript transcript = new Transcript();
 
         System.out.println("INI");
@@ -76,7 +74,8 @@ public class PropertyResource {
         System.out.println(room);
         System.out.println(category);
 
-        //System.out.println(service.find(page, project, type, bath, room, category));
+        service.getPropertyDao().find(page, project, type, bath, room, category)
+                .forEach(property -> System.out.println(property.getName()));
         System.out.println("FIN");
 
         transcript.defaults();
