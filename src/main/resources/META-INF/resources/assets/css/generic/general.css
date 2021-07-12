@@ -1,0 +1,34 @@
+/* GENERAL */
+
+* {
+  font-family: 'ABeeZee', sans-serif;
+}
+
+.section-title {
+  color: var(--bs-secondary);
+  font-weight: bold;
+}
+
+/* HEADER */
+
+header .nav-link {
+  color: black !important;
+}
+
+header .nav-link:focus, header .nav-link:hover, header .nav-link.active {
+  color: white !important;
+  background: var(--bs-primary);
+}
+
+header .nav-link.active:hover {
+  opacity: 0.75;
+}
+
+/* FOOTER */
+
+footer .social-icon {
+  font-size: 30px;
+}
+
+/* OTHER */
+

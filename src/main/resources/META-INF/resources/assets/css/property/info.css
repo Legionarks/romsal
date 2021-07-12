@@ -1,0 +1,21 @@
+.img-slide {
+  height: 350px;
+}
+
+#carousel-1 .carousel-item {
+  cursor: zoom-in;
+}
+
+#features input {
+  width: 18px;
+  height: 18px;
+}
+
+#features .form-check-input:checked {
+  opacity: 1 !Important;
+}
+
+.thumbnail {
+  cursor: pointer;
+}
+

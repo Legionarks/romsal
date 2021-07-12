@@ -1,0 +1,40 @@
+.contact-form {
+  background: var(--bs-light);
+  max-width: 75% !important;
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    max-width: 100% !important;
+    box-shadow: none !important;
+  }
+}
+
+.wrapper {
+  background: linear-gradient(0deg, white 30%, var(--bs-primary) 0%);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    background: #f7f7f7;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.input-data input {
+  background: inherit;
+  border: none;
+  border-bottom: 2px solid silver;
+}
+
+.locations > div {
+  display: inline-block;
+}
+
+.locations .col div:hover {
+  background: #f1f1f1;
+}
+

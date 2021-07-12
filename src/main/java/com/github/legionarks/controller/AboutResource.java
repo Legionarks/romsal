@@ -18,6 +18,8 @@ public class AboutResource {
         final Transcript transcript = new Transcript().defaults();
 
         transcript.getMap().put("page", "about");
+        transcript.defaults();
+
         transcript.put("title", "about.title");
         transcript.put("phrase", "about.phrase");
         transcript.put("mission-title", "about.mission.title");

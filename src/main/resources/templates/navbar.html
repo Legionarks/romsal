@@ -1,0 +1,16 @@
+<nav class="navbar navbar-light navbar-expand-lg text-uppercase text-center">
+    <div class="container"><a class="navbar-brand" href="/"><img
+                src="/assets/img/logo.jpg?h=8a706d21955efea0829ccd73963400f2" height="75px"></a><button
+            data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav navbar-nav-scroll mx-lg-auto gap-1 gap-lg-5 px-2">
+                <li class="nav-item"><a class="nav-link px-4 {#if map.page is 'home'}active{/if}" href="/" style="border-radius: 4px;">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link px-4 {#if map.page is 'properties'}active{/if}" href="/property/search"
+                        style="border-radius: 4px;">Propiedades</a></li>
+                <li class="nav-item"><a class="nav-link px-4 {#if map.page is 'about'}active{/if}" href="/about"
+                        style="border-radius: 4px;">Nosotros</a></li>
+            </ul><a class="btn btn-primary link-light my-4 my-lg-0" role="button" href="/contact">Contáctanos</a>
+        </div>
+    </div>
+</nav>

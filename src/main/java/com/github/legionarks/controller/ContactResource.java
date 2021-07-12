@@ -31,6 +31,9 @@ public class ContactResource {
     public TemplateInstance main() {
         final Transcript transcript = new Transcript().defaults();
 
+        transcript.getMap().put("page", "contact");
+        transcript.defaults();
+
         transcript.put("title", "contact.title");
         transcript.put("phrase", "contact.phrase");
         transcript.put("form-name", "contact.form.name");
@@ -41,8 +44,6 @@ public class ContactResource {
         transcript.put("title-info", "contact.title.info");
         
         transcript.put("contacts", service.getData().findAll());
-
-        System.out.println(service.getData().findAll());
 
         return Templates.contact().data("map", transcript.getMap());
     }

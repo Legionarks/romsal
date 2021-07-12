@@ -25,6 +25,7 @@ public class HomeResource {
         final Transcript transcript = new Transcript().defaults();
 
         transcript.getMap().put("page", "home");
+        
         transcript.put("welcome", "home.welcome");
         transcript.put("welcome-1", "home.welcome.phrase.phase.1");
         transcript.put("welcome-2", "home.welcome.phrase.phase.2");

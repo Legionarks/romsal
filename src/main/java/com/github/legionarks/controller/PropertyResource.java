@@ -66,18 +66,18 @@ public class PropertyResource {
             @QueryParam("category") String category) {
         final Transcript transcript = new Transcript();
 
-        System.out.println("INI");
-        System.out.println(page);
-        System.out.println(project);
-        System.out.println(type);
-        System.out.println(bath);
-        System.out.println(room);
-        System.out.println(category);
+        /*
+         * System.out.println("INI"); System.out.println(page);
+         * System.out.println(project); System.out.println(type);
+         * System.out.println(bath); System.out.println(room);
+         * System.out.println(category);
+         * 
+         * service.getPropertyDao().find(page, project, type, bath, room, category)
+         * .forEach(property -> System.out.println(property.getName()));
+         * System.out.println("FIN");
+         */
 
-        service.getPropertyDao().find(page, project, type, bath, room, category)
-                .forEach(property -> System.out.println(property.getName()));
-        System.out.println("FIN");
-
+        transcript.getMap().put("page", "properties");
         transcript.defaults();
 
         transcript.put("orders", "property.search.order.newer");
@@ -90,6 +90,8 @@ public class PropertyResource {
         transcript.put("form-category", "property.search.form.category");
         transcript.put("form-currency", "property.search.form.currency");
         transcript.put("form-search", "property.search");
+
+        transcript.put("properties", service.getPropertyDao().findAll());
 
         return Templates.search().data("map", transcript.getMap());
     }

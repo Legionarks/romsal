@@ -1,0 +1,33 @@
+.slider img {
+  max-height: 600px;
+  filter: brightness(40%);
+}
+
+#triangle, .slider .card-img-overlay > * {
+  z-index: 1;
+}
+
+#triangle {
+  border-left: 25vw solid transparent;
+  border-right: 80vw solid transparent;
+  border-bottom: 5vw solid white;
+}
+
+@media (min-width: 768px) {
+  #carousels img {
+    height: 200px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #carousels img {
+    height: 280px;
+  }
+}
+
+@media (min-width: 1400px) {
+  #carousels img {
+    height: 300px;
+  }
+}
+
