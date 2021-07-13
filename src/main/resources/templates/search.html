@@ -36,60 +36,71 @@
                         </div>
                     </div>
                     <ul class="list-group gap-4 mt-4" id="list">
+                        {#for property in map.properties}
                         <li class="list-group-item shadow p-0 card-property">
                             <div class="card-group d-inline d-lg-flex">
                                 <div class="card textwhite text-white m-0 overflow-hidden">
-                                    <div class="carousel slide" data-bs-ride="carousel" id="carousel-id">
+                                    <div class="carousel slide" data-bs-ride="carousel" id="carousel-{count}">
                                         <div class="carousel-inner">
                                             <div class="carousel-item active"><img class="w-100 d-block" alt="Slide Image"></div>
                                         </div>
                                         <div>
-                                            <!-- Start: Previous --><a class="carousel-control-prev" href="#carousel-id" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><!-- End: Previous -->
-                                            <!-- Start: Next --><a class="carousel-control-next" href="#carousel-id" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a><!-- End: Next -->
+                                            <!-- Start: Previous --><a class="carousel-control-prev" href="#carousel-{count}" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><!-- End: Previous -->
+                                            <!-- Start: Next --><a class="carousel-control-next" href="#carousel-{count}" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a><!-- End: Next -->
                                         </div>
                                     </div>
                                     <div class="row text-center card-img-overlay">
+                                        {#if property.outstanding}
                                         <div class="col card-outstanding"><span class="bg-secondary position-absolute featured">Destacado</span></div>
-                                        <div class="col-auto"><small class="d-block px-2 py-1 card-category" style="background: rgb(47,79,79,0.8);font-size: 12px;">Venta / Alquiler</small></div>
+                                        {/if}
+                                        <div class="col-auto">
+                                            <small class="d-block px-2 py-1 card-category" style="background: rgb(47,79,79,0.8);font-size: 12px;">{#if property.category.type.name is 'SELL'}En venta{#else if property.category.type.name is 'RENt'}En alquiler{/if}</small>
+                                        </div>
                                     </div>
                                     <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
                                         <div class="description-wrapper">
                                             <div class="text-start m-3">
-                                                <h6 class="fw-bold card-price">US$1</h6>
+                                                <h6 class="fw-bold card-price">USD${property.price}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card m-0">
                                     <div class="card-body">
-                                        <h4 class="card-title">Nombre</h4>
-                                        <div class="d-flex"><i class="material-icons pe-2">location_on</i><span>Ubicación</span></div>
-                                        <p class="card-text mt-2 pe-4 overflow-auto card-description" style="max-height: 120px;margin-bottom: 0;">. . .</p>
+                                        <h4 class="card-title">{property.name}</h4>
+                                        <div class="d-flex"><i class="material-icons pe-2">location_on</i><span>{property.address}</span></div>
+                                        <p class="card-text mt-2 pe-4 overflow-auto card-description" style="max-height: 120px;margin-bottom: 0;">{property.description}</p>
                                     </div>
                                     <div class="card-footer">
                                         <ul class="list-group list-group-horizontal text-nowrap text-center d-flex">
-                                            <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bed p-2"></i><span>1</span></li>
-                                            <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bath p-2"></i><span>1</span></li>
-                                            <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-car-alt p-2"></i><span>1</span></li>
-                                            <li class="list-group-item text-truncate border-0 p-2 bg-transparent"><i class="fas fa-ruler-combined p-2"></i><span>1 m²</span></li>
+                                            {#for thing in property.attributes}
+                                            {#if thing.attribute.type.name is 'ROOM'}
+                                            <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bed p-2"></i><span>{thing.amount}</span></li>
+                                            {#else if thing.attribute.type.name is 'BATH'}
+                                            <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bath p-2"></i><span>{thing.amount}</span></li>
+                                            {#else if thing.attribute.type.name is 'PARKING'}
+                                            <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-car-alt p-2"></i><span>{thing.amount}</span></li>
+                                            {#else if thing.attribute.type.name is 'AREA'}
+                                            <li class="list-group-item text-truncate border-0 p-2 bg-transparent"><i class="fas fa-ruler-combined p-2"></i><span>{thing.amount} m²</span></li>
+                                            {/if}
+                                            {/for}                                        
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </li>
+                        {/for}
                     </ul>
                     <nav class="m-5">
+                        {#if !map.properties.isEmpty}
                         <ul class="pagination justify-content-center">
                             <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" href="#">6</a></li>
-                            <li class="page-item"><a class="page-link" href="#">7</a></li>
+                            {#for index in utils:range(map.pagination,6)}
+                            <li class="page-item {#if index is map.pagination}active{/if}"><a class="page-link" href="#">{index}</a></li>
+                            {/for}
                             <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
                         </ul>
+                        {/if}
                     </nav>
                 </div>
                 <div class="col-md-4">

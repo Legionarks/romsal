@@ -11,6 +11,7 @@ import com.github.legionarks.model.property.Property;
 import com.github.legionarks.service.PropertyService;
 import com.github.legionarks.util.Templates;
 
+import io.quarkus.qute.TemplateExtension;
 import io.quarkus.qute.TemplateInstance;
 
 @Path("property")
@@ -77,7 +78,7 @@ public class PropertyResource {
          * System.out.println("FIN");
          */
 
-        transcript.getMap().put("page", "properties");
+        transcript.getMap().put("page", "property");
         transcript.defaults();
 
         transcript.put("orders", "property.search.order.newer");
@@ -90,6 +91,9 @@ public class PropertyResource {
         transcript.put("form-category", "property.search.form.category");
         transcript.put("form-currency", "property.search.form.currency");
         transcript.put("form-search", "property.search");
+
+        transcript.put("pagination", 4
+        );
 
         transcript.put("properties", service.getPropertyDao().findAll());
 
