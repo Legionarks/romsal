@@ -37,4 +37,29 @@ public class PropertyAttribute implements Serializable {
         this.attribute = attribute;
         this.amount = amount;
     }
+
+    public Property getProperty() {
+        return property;
+    }
+
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+
+    public Attribute getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(Attribute attribute) {
+        this.attribute = attribute;
+    }
+
+    public Short getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Short amount) {
+        this.amount = amount;
+    }
+
 }

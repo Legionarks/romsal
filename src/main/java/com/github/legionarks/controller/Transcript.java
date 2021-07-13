@@ -20,6 +20,10 @@ class Transcript {
         return map;
     }
 
+    public Messages getMessages() {
+        return messages;
+    }
+
     public Transcript defaults() {
         map.put("navbar-home", messages.getBundle().getString("navbar.home"));
         map.put("navbar-property", messages.getBundle().getString("navbar.property"));

@@ -30,7 +30,7 @@ public class PropertyDao extends Datasource<Property> {
         TypedQuery<Property> enquiry;
         Root<Property> property = query.from(clazz);
         List<Predicate> predicates = new ArrayList<>();
-        Predicate[] conditions = new Predicate[] {};
+        Predicate[] conditions;
 
         predicates.add(builder.like(property.get("name"), '%' + project + '%'));
 

@@ -1,5 +1,7 @@
 package com.github.legionarks.controller;
 
+import java.util.Arrays;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -77,11 +79,13 @@ public class PropertyResource {
          * System.out.println("FIN");
          */
 
-        transcript.getMap().put("page", "properties");
+        transcript.getMap().put("page", "property");
         transcript.defaults();
 
         transcript.put("orders", "property.search.order.newer");
-        transcript.put("filter", "property.search.filter");
+        transcript.put("filter", "property.search.order.default");
+        transcript.put("filter-list", Arrays.asList(Order.values()).stream()
+                .map(a -> transcript.getMessages().getBundle().getString(a.getProperty())));
         transcript.put("form-name", "property.search.form.name");
         transcript.put("form-type", "property.search.form.type");
 
@@ -90,6 +94,8 @@ public class PropertyResource {
         transcript.put("form-category", "property.search.form.category");
         transcript.put("form-currency", "property.search.form.currency");
         transcript.put("form-search", "property.search");
+
+        transcript.put("pagination", 1);
 
         transcript.put("properties", service.getPropertyDao().findAll());
 
@@ -112,9 +118,9 @@ public class PropertyResource {
     }
 
     private enum Order {
-        NEWER("property.search.order.newer"), OLDER("property.search.order.older"),
-        PRICE_LOW("property.search.order.price.low"), PRICE_HIGH("property.search.order.price.high"),
-        OUTSTANDING("property.search.order.outstanding");
+        DEFAULT("property.search.order.default"), NEWER("property.search.order.newer"),
+        OLDER("property.search.order.older"), PRICE_LOW("property.search.order.price.low"),
+        PRICE_HIGH("property.search.order.price.high"), OUTSTANDING("property.search.order.outstanding");
 
         private final String property;
 
