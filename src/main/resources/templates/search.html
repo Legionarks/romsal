@@ -45,7 +45,7 @@
                         {#for property in map.properties}
                         <li class="list-group-item shadow p-0 card-property">
                             <div class="card-group d-inline d-lg-flex">
-                                <div class="card textwhite text-white m-0 overflow-hidden">
+                                <div class="card textwhite text-white m-0 overflow-hidden"><a class="stretched-link" href="/property/info?id={property.id}"></a>
                                     <div class="carousel slide" data-bs-ride="carousel" id="carousel-{count}">
                                         <div class="carousel-inner">
                                             <div class="carousel-item active"><img class="w-100 d-block" alt="Slide Image"></div>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="card m-0">
                                     <div class="card-body">
-                                        <h4 class="card-title">{property.name}</h4>
+                                        <h4 class="card-title"><a class="link-dark text-decoration-none" href="/property/info?id={property.id}">{property.name}</a></h4>
                                         <div class="d-flex"><i class="material-icons pe-2">location_on</i><span>{property.address}</span></div>
                                         <p class="card-text mt-2 pe-4 overflow-auto card-description" style="max-height: 120px;margin-bottom: 0;">{property.description}</p>
                                     </div>
@@ -89,7 +89,7 @@
                                             {#else if thing.attribute.type.name is 'AREA'}
                                             <li class="list-group-item text-truncate border-0 p-2 bg-transparent"><i class="fas fa-ruler-combined p-2"></i><span>{thing.amount} m²</span></li>
                                             {/if}
-                                            {/for}                                        
+                                            {/for} 
                                         </ul>
                                     </div>
                                 </div>

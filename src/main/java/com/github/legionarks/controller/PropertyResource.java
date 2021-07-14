@@ -45,7 +45,8 @@ public class PropertyResource {
     public TemplateInstance info(@QueryParam("id") Long id) {
         final Transcript transcript = new Transcript();
         Property property = service.getPropertyDao().find(id);
-
+        
+        transcript.getMap().put("page", "property");
         transcript.defaults();
 
         transcript.put("category-all", "property.search.form.category.all");
@@ -85,7 +86,7 @@ public class PropertyResource {
         transcript.put("orders", "property.search.order.newer");
         transcript.put("filter", "property.search.order.default");
         transcript.put("filter-list", Arrays.asList(Order.values()).stream()
-                .map(a -> transcript.getMessages().getBundle().getString(a.getProperty())));
+                .map(order -> transcript.getMessages().getBundle().getString(order.getProperty())));
         transcript.put("form-name", "property.search.form.name");
         transcript.put("form-type", "property.search.form.type");
 
