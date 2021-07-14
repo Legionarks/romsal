@@ -12,9 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,7 +24,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.github.legionarks.model.Location;
 import com.github.legionarks.model.property.attribute.PropertyAttribute;
 import com.github.legionarks.model.property.category.Category;
-import com.github.legionarks.model.property.feature.Feature;
 import com.github.legionarks.model.property.type.Type;
 import com.github.legionarks.util.CurrencyConverter;
 
@@ -75,8 +72,7 @@ public class Property {
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PropertyAttribute> attributes;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(joinColumns = @JoinColumn(name = "PROPERTY_ID"), inverseJoinColumns = @JoinColumn(name = "FEATURE_ID"))
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Feature> features;
 
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

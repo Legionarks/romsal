@@ -14,29 +14,29 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "MEDIA")
-public class Media implements Serializable {
+@Table(name = "FEATURE")
+public class Feature implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Long id;
-    
+
     @JsonIgnore
     @Id
     @ManyToOne
     @JoinColumn(name = "PROPERTY")
     private Property property;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "TYPE", nullable = false)
+    private String type;
 
-    public Media() {
+    public Feature() {
     }
 
-    public Media(Property property, String name) {
+    public Feature(Property property, String type) {
         this.property = property;
-        this.name = name;
+        this.type = type;
     }
 
     public Long getId() {
@@ -55,12 +55,12 @@ public class Media implements Serializable {
         this.property = property;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setType(String type) {
+        this.type = type;
     }
 
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
-    <link rel="stylesheet" href="/assets/css/custom-colors.compiled.css?h=c56b082155acdada91dfdcb9dcf23b85">
+    <link rel="stylesheet" href="/assets/css/custom-colors.compiled.css?h=6a6f6afc6d4cdc1e2e359fe228439f9d">
     <link rel="stylesheet" href="/assets/css/generic/general.css?h=a7957f698ea1f4e9b33d41f9c0b2e442">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee&amp;display=swap">
     <link rel="stylesheet" href="/assets/css/property/info.css?h=87d94c8e4f30c6ed815dcce2bcbe6954">
@@ -96,7 +96,7 @@
                     <div class="col">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h4 class="text-break d-flex card-title">{map.property.name}<i class="fas fa-star ms-auto ps-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="left" style="color: var(--bs-primary);" title="Destacada"></i></h4>
+                                <h4 class="text-break d-flex card-title">{map.property.name}<i class="fas fa-star ms-auto ps-2 card-outstanding" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="left" style="color: var(--bs-primary);" title="Destacada"></i></h4>
                                 <h6 class="d-flex align-items-center card-subtitle mb-2"><i class="material-icons m-1">location_on</i>{map.property.address}</h6>
                                 <ul class="list-group list-group-horizontal text-truncate bg-white d-flex">
                                     {#for thing in map.property.attributes}
@@ -113,10 +113,10 @@
                                     </li>
                                     {/for}
                                 </ul>
-                                <p>{map.property.description}</p>
+                                <p class="card-description">{map.property.description}</p>
                             </div>
                             <div class="card-footer d-flex">
-                                <h2 class="my-auto">USD${map.property.price}</h2>
+                                <h2 class="my-auto card-price">USD${map.property.price}</h2>
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,9 @@
                         <h4 class="section-title">Características</h4>
                         <hr>
                         <ul class="list-unstyled row row-cols-3" id="features">
-                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">Cosa</span></li>
+                            {#for feature in map.property.features}
+                            <li class="d-flex align-items-stretch"><input type="checkbox" class="form-check-input" checked="" disabled="" onclick="return false;"><span class="px-2">{feature.type}</span></li>
+                            {/for}
                         </ul>
                     </div>
                     <div class="mb-4">

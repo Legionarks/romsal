@@ -3,10 +3,8 @@ package com.github.legionarks.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
 
 import com.github.legionarks.model.Location;
 import com.github.legionarks.model.property.Property;

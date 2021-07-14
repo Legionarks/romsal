@@ -45,7 +45,7 @@ public class PropertyResource {
     public TemplateInstance info(@QueryParam("id") Long id) {
         final Transcript transcript = new Transcript();
         Property property = service.getPropertyDao().find(id);
-        
+
         transcript.getMap().put("page", "property");
         transcript.defaults();
 

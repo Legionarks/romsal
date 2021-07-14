@@ -9,12 +9,12 @@ import javax.inject.Singleton;
 
 import com.github.legionarks.model.Contact;
 import com.github.legionarks.model.Location;
+import com.github.legionarks.model.property.Feature;
 import com.github.legionarks.model.property.Media;
 import com.github.legionarks.model.property.Property;
 import com.github.legionarks.model.property.attribute.AttributeType;
 import com.github.legionarks.model.property.attribute.PropertyAttribute;
 import com.github.legionarks.model.property.category.CategoryType;
-import com.github.legionarks.model.property.feature.FeatureType;
 import com.github.legionarks.model.property.type.PropertyType;
 import com.github.legionarks.service.ContactService;
 import com.github.legionarks.service.PropertyService;
@@ -51,7 +51,6 @@ public class Bootstrap {
         propertyService.types();
         propertyService.categories();
         propertyService.attributes();
-        propertyService.features();
 
         property = new Property();
         property.setName("Penthouse of your dreams");
@@ -73,8 +72,7 @@ public class Bootstrap {
                         (short) 2),
                 new PropertyAttribute(property, propertyService.getAttributeDao().find(AttributeType.AREA.name()),
                         (short) 208)));
-        property.setFeatures(Set.of(propertyService.getFeatureDao().find(FeatureType.POOL.name()),
-                propertyService.getFeatureDao().find(FeatureType.ALARM.name())));
+        property.setFeatures(Set.of(new Feature(property, "Pool"), new Feature(property, "Alarm")));
         property.setMedias(Set.of(new Media(property, "inside-01"), new Media(property, "inside-02")));
         propertyService.getPropertyDao().create(property);
     }

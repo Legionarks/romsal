@@ -12,8 +12,6 @@ import com.github.legionarks.model.property.attribute.Attribute;
 import com.github.legionarks.model.property.attribute.AttributeType;
 import com.github.legionarks.model.property.category.Category;
 import com.github.legionarks.model.property.category.CategoryType;
-import com.github.legionarks.model.property.feature.Feature;
-import com.github.legionarks.model.property.feature.FeatureType;
 import com.github.legionarks.model.property.type.PropertyType;
 import com.github.legionarks.model.property.type.Type;
 
@@ -102,16 +100,6 @@ public class PropertyService {
             type = new Type();
             type.setType(xtype);
             typeDao.create(type);
-        }
-    }
-
-    public void features() {
-        Feature feature;
-
-        for (FeatureType type : FeatureType.values()) {
-            feature = new Feature();
-            feature.setType(type);
-            featureDao.create(feature);
         }
     }
 }

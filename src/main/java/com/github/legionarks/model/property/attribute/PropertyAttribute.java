@@ -10,20 +10,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.legionarks.model.property.Property;
 
 @Entity
 @Table(name = "PROPERTY_ATTRIBUTE")
 public class PropertyAttribute implements Serializable {
 
+    @JsonIgnore
     @Id
     @ManyToOne
-    @JoinColumn(name = "PROPERTY_ID")
+    @JoinColumn(name = "PROPERTY")
     private Property property;
 
     @Id
     @OneToOne
-    @JoinColumn(name = "ATTRIBUTE_ID")
+    @JoinColumn(name = "ATTRIBUTE")
     private Attribute attribute;
 
     @Column(name = "AMOUNT")
