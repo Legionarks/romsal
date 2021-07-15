@@ -10,7 +10,9 @@ function show(index) {
 
 // Initialize and add the map
 function initMap() {
-  const url = '/api/locations';
+  let params = new URL(document.location).searchParams;
+  let id = params.get("id");
+  const url = '/api/property/location?id=' + id;
 
   // The location of x
   const dominican = { lat: 18.900, lng: -70.500 };
@@ -30,11 +32,9 @@ function initMap() {
     .catch(err => { throw err });
 };
 
-function markers(locations, map) {
-  locations.forEach(location => {
+function markers(location, map) {
     new google.maps.Marker({
       position: { lat: location.latitude, lng: location.longitude },
       map: map,
     });
-  });
 };

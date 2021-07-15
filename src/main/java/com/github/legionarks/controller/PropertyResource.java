@@ -64,7 +64,7 @@ public class PropertyResource {
     @GET
     @Path("search")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance search(@QueryParam("page") Short page, @QueryParam("project") String project,
+    public TemplateInstance search(@QueryParam("page") Short page, @QueryParam("address") String address,
             @QueryParam("type") String type, @QueryParam("bath") String bath, @QueryParam("room") String room,
             @QueryParam("category") String category) {
         final Transcript transcript = new Transcript();

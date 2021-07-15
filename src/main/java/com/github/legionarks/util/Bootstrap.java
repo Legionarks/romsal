@@ -73,7 +73,7 @@ public class Bootstrap {
                 new PropertyAttribute(property, propertyService.getAttributeDao().find(AttributeType.AREA.name()),
                         (short) 208)));
         property.setFeatures(Set.of(new Feature(property, "Pool"), new Feature(property, "Alarm")));
-        property.setMedias(Set.of(new Media(property, "inside-01"), new Media(property, "inside-02")));
+        property.setMedias(Set.of(new Media(property, "inside-01.jpg"), new Media(property, "inside-02")));
         propertyService.getPropertyDao().create(property);
     }
 

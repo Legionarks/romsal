@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 
 import com.github.legionarks.model.Location;
 import com.github.legionarks.model.property.Property;
@@ -16,19 +17,25 @@ public class ApiResource {
 
     @Inject
     PropertyService propertyService;
-    
+
     @Inject
     ContactService contactService;
-    
+
     @GET
     @Path("properties")
     public List<Property> properties() {
         return propertyService.getPropertyDao().findAll();
     }
-    
+
     @GET
     @Path("locations")
     public List<Location> locations() {
         return contactService.getData().locations();
+    }
+
+    @GET
+    @Path("property/location")
+    public Location location(@QueryParam("id") Long id) {
+        return propertyService.getPropertyDao().find(id).getLocation();
     }
 }
