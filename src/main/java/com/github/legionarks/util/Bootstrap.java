@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import com.github.legionarks.model.Contact;
+import com.github.legionarks.model.Currency;
 import com.github.legionarks.model.Location;
+import com.github.legionarks.model.Rate;
 import com.github.legionarks.model.property.Feature;
 import com.github.legionarks.model.property.Media;
 import com.github.legionarks.model.property.Property;
@@ -17,6 +19,7 @@ import com.github.legionarks.model.property.attribute.PropertyAttribute;
 import com.github.legionarks.model.property.category.CategoryType;
 import com.github.legionarks.model.property.type.PropertyType;
 import com.github.legionarks.service.ContactService;
+import com.github.legionarks.service.CurrencyService;
 import com.github.legionarks.service.PropertyService;
 import com.github.legionarks.service.UserService;
 
@@ -35,14 +38,57 @@ public class Bootstrap {
     @Inject
     ContactService contactService;
 
+    @Inject
+    CurrencyService currencyService;
+
     public Bootstrap() {
     }
 
     @PostConstruct
     public void init() {
-        properties();
+        currencies();
         users();
         contact();
+        properties();
+    }
+
+    private void currencies() {
+        Currency[] currencies = {new Currency("United States Dollar", "USD"), new Currency("Dominican Peso", "DOP")};
+        
+        currencyService.getCurrencyDao().create(currencies[0]);
+        currencyService.getCurrencyDao().create(currencies[1]);
+        currencyService.getRateDao().create(new Rate(currencies[0], currencies[1], BigDecimal.valueOf(56.97)));
+        currencyService.getRateDao().create(new Rate(currencies[1], currencies[0], BigDecimal.valueOf(0.02)));
+    }
+
+    private void users() {
+        userService.roles();
+
+        // userService.add("user", "user", "USER");
+        // userService.add("admin", "admin", "ADMIN");
+    }
+
+    private void contact() {
+        Contact contact;
+        Location location;
+
+        contact = new Contact();
+        location = new Location();
+        contact.setCity("Santiago de los Caballeros");
+        contact.setAddress("C/ Parada Vieja, Res. María Alejandra I 2do Nivel");
+        contact.setPhone("(809) 820 - 0897");
+        location.set(18.500000F, -69.983300F);
+        contact.setLocation(location);
+        contactService.getData().create(contact);
+
+        contact = new Contact();
+        location = new Location();
+        contact.setCity("Santo Domingo");
+        contact.setAddress("Av. Independencia");
+        contact.setPhone("(809) 580 - 1111");
+        location.set(18.500000F, -69.983300F);
+        contact.setLocation(location);
+        contactService.getData().create(contact);
     }
 
     private void properties() {
@@ -189,33 +235,4 @@ public class Bootstrap {
         propertyService.getPropertyDao().create(property);
     }
 
-    public void users() {
-        userService.roles();
-
-        // userService.add("user", "user", "USER");
-        // userService.add("admin", "admin", "ADMIN");
-    }
-
-    private void contact() {
-        Contact contact;
-        Location location;
-
-        contact = new Contact();
-        location = new Location();
-        contact.setCity("Santiago de los Caballeros");
-        contact.setAddress("C/ Parada Vieja, Res. María Alejandra I 2do Nivel");
-        contact.setPhone("(809) 820 - 0897");
-        location.set(18.500000F, -69.983300F);
-        contact.setLocation(location);
-        contactService.getData().create(contact);
-
-        contact = new Contact();
-        location = new Location();
-        contact.setCity("Santo Domingo");
-        contact.setAddress("Av. Independencia");
-        contact.setPhone("(809) 580 - 1111");
-        location.set(18.500000F, -69.983300F);
-        contact.setLocation(location);
-        contactService.getData().create(contact);
-    }
 }
