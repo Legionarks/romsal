@@ -45,8 +45,8 @@ function carrousel(id, size, out) {
         };
     });
 
-    for (var index = 1; index < Math.ceil(out.length / size) * size; index++) {
-        carousel.getElementsByClassName("card-group").item(0).innerHTML += empty.cloneNode(true).outerHTML;
+    for (var index = 0; index < (Math.ceil(out.length / size) * size) - out.length; index++) {
+        carousel.getElementsByClassName("card-group").item(parseInt(out.length / size)).innerHTML += empty.cloneNode(true).outerHTML;
     };
 
     return carousel;
@@ -64,7 +64,6 @@ function fill(card, property) {
     };
 
     card.getElementsByClassName("card-price").item(0).textContent = property.price;
-    console.log(card.getElementsByClassName("card-title").item(0).children.item(0));
     card.getElementsByClassName("card-title").item(0).innerHTML = card.getElementsByClassName("card-title").item(0).children.item(0).outerHTML + property.name;
     card.getElementsByClassName("card-description").item(0).textContent = property.description;
     card.getElementsByClassName("card-link").item(0).href = "/property/info?id=" + property.id;

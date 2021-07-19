@@ -1,5 +1,6 @@
 package com.github.legionarks.controller;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import javax.inject.Inject;
@@ -64,21 +65,25 @@ public class PropertyResource {
     @GET
     @Path("search")
     @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance search(@QueryParam("page") Short page, @QueryParam("address") String address,
-            @QueryParam("type") String type, @QueryParam("bath") String bath, @QueryParam("room") String room,
-            @QueryParam("category") String category) {
+    public TemplateInstance search(@QueryParam("page") String page, @QueryParam("address") String address,
+            @QueryParam("type") String type, @QueryParam("room") String room, @QueryParam("bath") String bath,
+            @QueryParam("category") String category, @QueryParam("currency") String currency,
+            @QueryParam("price-min") BigDecimal min, @QueryParam("price-max") BigDecimal max) {
         final Transcript transcript = new Transcript();
 
-        /*
-         * System.out.println("INI"); System.out.println(page);
-         * System.out.println(project); System.out.println(type);
-         * System.out.println(bath); System.out.println(room);
-         * System.out.println(category);
-         * 
-         * service.getPropertyDao().find(page, project, type, bath, room, category)
-         * .forEach(property -> System.out.println(property.getName()));
-         * System.out.println("FIN");
-         */
+        System.out.println("INI");
+        System.out.println("page:" + page);
+        System.out.println("address:" + address);
+        System.out.println("type:" + type);
+        System.out.println("room:" + room);
+        System.out.println("bath:" + bath);
+        System.out.println("category:" + category);
+        System.out.println("currency:"+currency);
+        System.out.println("min:" + min);
+        System.out.println("max:" + max);
+
+        service.getPropertyDao().find(page, address, type, bath, room, category, currency, new BigDecimal[]{min, max}).forEach(property -> System.out.println(property.getName()));
+        System.out.println("FIN");
 
         transcript.getMap().put("page", "property");
         transcript.defaults();
@@ -98,7 +103,7 @@ public class PropertyResource {
 
         transcript.put("pagination", 1);
 
-        transcript.put("properties", service.getPropertyDao().findAll());
+        // transcript.put("properties", service.getPropertyDao().findAll());
 
         return Templates.search().data("map", transcript.getMap());
     }

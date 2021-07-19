@@ -1,20 +1,23 @@
 package com.github.legionarks.dao.property;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Singleton;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import com.github.legionarks.dao.Datasource;
 import com.github.legionarks.model.property.Property;
+import com.github.legionarks.model.property.attribute.AttributeType;
+import com.github.legionarks.model.property.attribute.PropertyAttribute;
 
 @Singleton
 public class PropertyDao extends Datasource<Property> {
@@ -24,36 +27,45 @@ public class PropertyDao extends Datasource<Property> {
     }
 
     @Transactional
-    public List<Property> find(Short page, String project, String type, String bath, String room, String category) {
+    public List<Property> find(String page, String address, String type, String room, String bath, String category,
+            String currency, BigDecimal[] price) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Property> query = builder.createQuery(clazz);
         TypedQuery<Property> enquiry;
         Root<Property> property = query.from(clazz);
-        List<Predicate> predicates = new ArrayList<>();
-        Predicate[] conditions;
+        Join<Property, PropertyAttribute> attribute = property.join("attributes", JoinType.LEFT);
+        List<Predicate> conditions = new ArrayList<>();
+        Predicate[] wheres;
 
-        predicates.add(builder.like(property.get("name"), '%' + project + '%'));
+        if (page != null && !page.isBlank()) {
+            try {
+                Short p = Short.parseShort(page);
+            } catch (NumberFormatException e) {
+                page = null;
+            }
+        }
 
-        conditions = new Predicate[predicates.size()];
-        predicates.toArray(conditions);
+        conditions.add(builder.like(property.get("address"), '%' + address + '%'));
+        conditions.add(builder.like(property.get("type").get("type").as(String.class), '%' + type + '%'));
+        conditions.add(builder.and(
+                builder.like(attribute.get("attribute").get("type").as(String.class), AttributeType.ROOM.name()),
+                builder.equal(attribute.get("amount"), Short.parseShort(room))));
+        conditions.add(builder.and(
+                builder.like(attribute.get("attribute").get("type").as(String.class), AttributeType.BATH.name()),
+                builder.equal(attribute.get("amount"), Short.parseShort(bath))));
+        conditions.add(builder.like(property.get("category").get("type").as(String.class), '%' + category + '%'));
+
+        wheres = new Predicate[conditions.size()];
+        conditions.toArray(wheres);
+        query.where(wheres);
         query.select(property);
-        query.where(conditions);
         enquiry = manager.createQuery(query);
 
         return enquiry.getResultList();
     }
 
-    private Map<String, Object> criteria(Short page, String project, String type, String bath, String room,
-            String category) {
-        final Map<String, Object> map = new HashMap<>();
-
-        Object auxPage = page == null ? null : map.put("page", page);
-        Object auxProject = project == null || project.isBlank() || project.isEmpty() ? null : map.put("NAME", project);
-        Object auxType = type == null || type.isBlank() || type.isEmpty() ? null : map.put("TYPE", type);
-        Object auxBath = bath == null ? null : map.put("bath", bath);
-        Object auxRoom = room == null ? null : map.put("room", room);
-
-        return map;
+    private Long pages() {
+        return (Long) manager.createQuery("SELECT count(p.ID) from Property", Long.class).getSingleResult();
     }
 
     /*

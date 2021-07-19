@@ -21,6 +21,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.github.legionarks.model.Currency;
 import com.github.legionarks.model.Location;
 import com.github.legionarks.model.property.attribute.PropertyAttribute;
 import com.github.legionarks.model.property.category.Category;
@@ -45,6 +46,10 @@ public class Property {
 
     @Column(name = "ADDRESS")
     private String address;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CURRENCY")
+    private Currency currency;
 
     @JsonSerialize(converter = CurrencyConverter.class)
     @Column(name = "PRICE")
@@ -114,6 +119,14 @@ public class Property {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 
     public BigDecimal getPrice() {

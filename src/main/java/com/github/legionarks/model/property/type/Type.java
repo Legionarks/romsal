@@ -22,6 +22,14 @@ public class Type {
     @Column(name = "TYPE", unique = true)
     private PropertyType type;
 
+    public Short getId() {
+        return id;
+    }
+
+    public void setId(Short id) {
+        this.id = id;
+    }
+
     public PropertyType getType() {
         return type;
     }
