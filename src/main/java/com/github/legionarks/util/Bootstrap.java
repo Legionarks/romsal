@@ -53,12 +53,11 @@ public class Bootstrap {
     }
 
     private void currencies() {
-        Currency[] currencies = {new Currency("United States Dollar", "USD"), new Currency("Dominican Peso", "DOP")};
+        Currency[] currencies = {new Currency("Dominican Peso", "DOP"), new Currency("United States Dollar", "USD")};
         
         currencyService.getCurrencyDao().create(currencies[0]);
         currencyService.getCurrencyDao().create(currencies[1]);
-        currencyService.getRateDao().create(new Rate(currencies[0], currencies[1], BigDecimal.valueOf(56.97)));
-        currencyService.getRateDao().create(new Rate(currencies[1], currencies[0], BigDecimal.valueOf(0.02)));
+        currencyService.persist(new Rate(currencies[0], currencies[1], BigDecimal.valueOf(57.50)));
     }
 
     private void users() {

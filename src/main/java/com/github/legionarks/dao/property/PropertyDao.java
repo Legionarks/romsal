@@ -54,6 +54,10 @@ public class PropertyDao extends Datasource<Property> {
                 builder.like(attribute.get("attribute").get("type").as(String.class), AttributeType.BATH.name()),
                 builder.equal(attribute.get("amount"), Short.parseShort(bath))));
         conditions.add(builder.like(property.get("category").get("type").as(String.class), '%' + category + '%'));
+        conditions.add(builder.or(
+            builder.and(builder.like(null, "DOP"), builder.and(builder.ge(null, 0), builder.le(null, 0))),
+            builder.and(builder.like(null, "DOP"), builder.and(builder.ge(null, 0), builder.le(null, 0)))
+            ));
 
         wheres = new Predicate[conditions.size()];
         conditions.toArray(wheres);

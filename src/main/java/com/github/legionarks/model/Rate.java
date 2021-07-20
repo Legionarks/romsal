@@ -59,4 +59,5 @@ public class Rate implements Serializable {
     public void setExchange(BigDecimal exchange) {
         this.exchange = exchange;
     }
+
 }
