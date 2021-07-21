@@ -74,22 +74,24 @@ public class PropertyDao extends Datasource<Property> {
             for (Rate rate : rates) {
                 if (rate.getOrigin().getType() == CurrencyType.USD && rate.getTarget().getType() == CurrencyType.DOP) {
                     usd = new BigDecimal[] { price[0], price[1] };
-                    dop = new BigDecimal[] {
-                            price[0].divide(rate.getExchange(), rate.getExchange().scale(), RoundingMode.HALF_UP),
-                            price[1].divide(rate.getExchange(), rate.getExchange().scale(), RoundingMode.HALF_UP) };
+                    dop = new BigDecimal[] { price[0].multiply(rate.getExchange()),
+                            price[1].multiply(rate.getExchange()) };
+                    break;
                 } else if (rate.getOrigin().getType() == CurrencyType.DOP
                         && rate.getTarget().getType() == CurrencyType.USD) {
-                    usd = new BigDecimal[] { price[0].multiply(rate.getExchange()),
-                            price[1].multiply(rate.getExchange()) };
+                    usd = new BigDecimal[] {
+                            price[0].divide(rate.getExchange(), rate.getExchange().scale(), RoundingMode.HALF_UP),
+                            price[1].divide(rate.getExchange(), rate.getExchange().scale(), RoundingMode.HALF_UP) };
                     dop = new BigDecimal[] { price[0], price[1] };
+                    break;
                 }
             }
 
             conditions.add(builder.or(
-                    builder.and(builder.like(property.get("currency").get("type").as(String.class), "DOP"),
+                    builder.and(builder.like(property.get("currency").get("type").as(String.class), CurrencyType.DOP.name()),
                             builder.ge(property.get("price"), dop[0]), builder.le(property.get("price"), dop[1])),
 
-                    builder.and(builder.like(property.get("currency").get("type").as(String.class), "USD"),
+                    builder.and(builder.like(property.get("currency").get("type").as(String.class), CurrencyType.USD.name()),
                             builder.ge(property.get("price"), usd[0]), builder.le(property.get("price"), usd[1]))));
         }
 
