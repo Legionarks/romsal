@@ -1,9 +1,11 @@
-package com.github.legionarks.model;
+package com.github.legionarks.model.currency;
 
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +22,9 @@ public class Currency {
     @Column(name = "ID")
     private Short id;
 
-    @Column(name = "NAME", nullable = false)
-    private String name;
-
-    @Column(name = "CODE", nullable = false)
-    private String code;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TYPE", nullable = false, unique = true)
+    private CurrencyType type;
 
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Rate> rates;
@@ -32,9 +32,8 @@ public class Currency {
     public Currency() {
     }
 
-    public Currency(String name, String code) {
-        this.name = name;
-        this.code = code;
+    public Currency(CurrencyType type) {
+        this.type = type;
     }
 
     public Short getId() {
@@ -45,20 +44,12 @@ public class Currency {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public CurrencyType getType() {
+        return type;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setType(CurrencyType type) {
+        this.type = type;
     }
 
     public Set<Rate> getRates() {

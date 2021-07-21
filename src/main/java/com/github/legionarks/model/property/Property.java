@@ -21,8 +21,8 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.github.legionarks.model.Currency;
 import com.github.legionarks.model.Location;
+import com.github.legionarks.model.currency.Currency;
 import com.github.legionarks.model.property.attribute.PropertyAttribute;
 import com.github.legionarks.model.property.category.Category;
 import com.github.legionarks.model.property.type.Type;

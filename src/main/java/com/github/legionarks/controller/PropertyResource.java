@@ -11,6 +11,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.github.legionarks.model.property.Property;
+import com.github.legionarks.service.CurrencyService;
 import com.github.legionarks.service.PropertyService;
 import com.github.legionarks.util.Templates;
 
@@ -21,6 +22,9 @@ public class PropertyResource {
 
     @Inject
     PropertyService service;
+
+    @Inject
+    CurrencyService currencyService;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -70,6 +74,7 @@ public class PropertyResource {
             @QueryParam("category") String category, @QueryParam("currency") String currency,
             @QueryParam("price-min") BigDecimal min, @QueryParam("price-max") BigDecimal max) {
         final Transcript transcript = new Transcript();
+        final Short size = 10;
 
         System.out.println("INI");
         System.out.println("page:" + page);
@@ -82,7 +87,7 @@ public class PropertyResource {
         System.out.println("min:" + min);
         System.out.println("max:" + max);
 
-        service.getPropertyDao().find(page, address, type, bath, room, category, currency, new BigDecimal[]{min, max}).forEach(property -> System.out.println(property.getName()));
+        service.getPropertyDao().find(size, page, address, type, bath, room, category, currency, new BigDecimal[]{min, max}, currencyService.getRateDao().findAll()).forEach(property -> System.out.println(property.getName()));
         System.out.println("FIN");
 
         transcript.getMap().put("page", "property");

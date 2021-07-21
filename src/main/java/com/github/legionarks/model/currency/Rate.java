@@ -1,4 +1,4 @@
-package com.github.legionarks.model;
+package com.github.legionarks.model.currency;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
