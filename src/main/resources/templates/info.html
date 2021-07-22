@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Romsal, SRL</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
-    <link rel="stylesheet" href="/assets/css/custom-colors.compiled.css?h=6a6f6afc6d4cdc1e2e359fe228439f9d">
+    <link rel="stylesheet" href="/assets/css/custom-colors.compiled.css?h=c56b082155acdada91dfdcb9dcf23b85">
     <link rel="stylesheet" href="/assets/css/generic/general.css?h=a7957f698ea1f4e9b33d41f9c0b2e442">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee&amp;display=swap">
     <link rel="stylesheet" href="/assets/css/property/info.css?h=87d94c8e4f30c6ed815dcce2bcbe6954">
 </head>
@@ -98,25 +100,23 @@
                             <div class="card-body">
                                 <h4 class="text-break d-flex card-title">{map.property.name}<i class="fas fa-star ms-auto ps-2 card-outstanding" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="left" style="color: var(--bs-primary);" title="Destacada"></i></h4>
                                 <h6 class="d-flex align-items-center card-subtitle mb-2"><i class="material-icons m-1">location_on</i>{map.property.address}</h6>
-                                <ul class="list-group list-group-horizontal text-truncate bg-white d-flex">
+                                <ul class="list-group list-group-horizontal text-nowrap text-center d-flex">
                                     {#for thing in map.property.attributes}
-                                    <li class="list-group-item border-0 p-2">
-                                        {#if thing.attribute.type.name is 'ROOM'}
-                                        <span><i class="fas fa-bed p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Habitaciones"></i>{thing.amount}</span>
-                                        {#else if thing.attribute.type.name is 'BATH'}
-                                        <span><i class="fas fa-bath p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Baños"></i>{thing.amount}</span>
-                                        {#else if thing.attribute.type.name is 'PARKING'}
-                                        <span><i class="fas fa-car-alt p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Parqueos"></i>{thing.amount}</span>
-                                        {#else if thing.attribute.type.name is 'AREA'}
-                                        <span><i class="fas fa-ruler-combined p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Área"></i>{thing.amount} m²</span>
-                                        {/if}
-                                    </li>
+                                    {#if thing.attribute.type.name is 'ROOM'}
+                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bed p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Habitaciones"></i><span>1</span></li>
+                                    {#else if thing.attribute.type.name is 'BATH'}
+                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bath p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Baños"></i><span>1</span></li>
+                                    {#else if thing.attribute.type.name is 'PARKING'}
+                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-car-alt p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Parqueos"></i><span>1</span></li>
+                                    {#else if thing.attribute.type.name is 'AREA'}
+                                    <li class="list-group-item text-truncate border-0 p-2 bg-transparent"><i class="fas fa-ruler-combined p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Área"></i><span>1 m²</span></li>
+                                    {/if}
                                     {/for}
                                 </ul>
-                                <p class="card-description">{map.property.description}</p>
+                                <p class="card-text mt-2 pe-4 overflow-auto card-description" style="max-height: 120px;">{map.property.description}</p>
                             </div>
                             <div class="card-footer d-flex">
-                                <h2 class="my-auto card-price">USD${map.property.price}</h2>
+                                <h2 class="my-auto card-price">{map.property.currency.type.code}${map.property.price}</h2>
                             </div>
                         </div>
                     </div>
@@ -158,7 +158,9 @@
                     <div class="mb-4">
                         <h4 class="section-title">Resumen</h4>
                         <hr>
-                        <div>{map.property.summary}</div>
+                        <div id="summary">
+                            {map.property.summary}
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -194,10 +196,11 @@
         <div id="map" class="w-100" style="height: 400px;"></div>
     </main>
     <footer>{#include footer/}</footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/bs-init.js?h=f85385df9bc7fca4241bc1dbf53b9d61"></script>
-    <script src="/assets/js/formatter/currency.js?h=c473d08532b05fe5816ebe43c24db8a0"></script>
-    <script src="/assets/js/info.js?h=50f4cf3deb7f510101cb27886af25ddb"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/bs-init.js?h=7265b1488dcf69b8a52816ef73c57595"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="/assets/js/info.js?h=b256a98c94183c9319bf58b1daacc19d"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmO0JHOHAXY2C3Ud49KbMSwFf3APep1Ow&amp;region=DO&amp;language=es&amp;callback=initMap"></script>
 </body>
 
