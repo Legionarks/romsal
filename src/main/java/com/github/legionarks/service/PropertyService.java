@@ -1,5 +1,8 @@
 package com.github.legionarks.service;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -8,6 +11,9 @@ import com.github.legionarks.dao.property.CategoryDao;
 import com.github.legionarks.dao.property.FeatureDao;
 import com.github.legionarks.dao.property.PropertyDao;
 import com.github.legionarks.dao.property.TypeDao;
+import com.github.legionarks.model.currency.Currency;
+import com.github.legionarks.model.currency.CurrencyType;
+import com.github.legionarks.model.property.Property;
 import com.github.legionarks.model.property.attribute.Attribute;
 import com.github.legionarks.model.property.attribute.AttributeType;
 import com.github.legionarks.model.property.category.Category;
@@ -32,6 +38,9 @@ public class PropertyService {
 
     @Inject
     FeatureDao featureDao;
+
+    @Inject
+    CurrencyService currencyService;
 
     public PropertyDao getPropertyDao() {
         return propertyDao;
@@ -101,5 +110,15 @@ public class PropertyService {
             type.setType(xtype);
             typeDao.create(type);
         }
+    }
+
+    public List<Property> find(Short size, String page, String address, String type, String bath, String room,
+            String category, String currency, BigDecimal[] price) {
+        Currency validCurrency = null;
+
+        if (currency != null && !currency.isBlank()) {
+            validCurrency = currencyService.getCurrencyDao().find(CurrencyType.find(currency));
+        }
+        return propertyDao.find(size, page, address, type, room, bath, category, validCurrency, price);
     }
 }

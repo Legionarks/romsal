@@ -119,7 +119,6 @@ public class Bootstrap {
         property.setFeatures(
                 Set.of(new Feature(property, "Sala"), new Feature(property, "Comedor"), new Feature(property, "Cocina"),
                         new Feature(property, "Balcón"), new Feature(property, "Área de lavado")));
-        property.setMedias(Set.of(new Media(property, "inside-01"), new Media(property, "inside-02")));
         propertyService.getPropertyDao().create(property);
 
         // Garden Tower
@@ -147,7 +146,7 @@ public class Bootstrap {
         property.setFeatures(Set.of(new Feature(property, "Sala"), new Feature(property, "Comedor"),
                 new Feature(property, "Cocina"), new Feature(property, "Balcón"),
                 new Feature(property, "Área de lavado"), new Feature(property, "Salida de emergencia")));
-        property.setMedias(Set.of(new Media(property, "inside-01"), new Media(property, "inside-02")));
+        property.setMedias(Set.of(new Media(property, "1.jpeg"), new Media(property, "2.jpeg"), new Media(property, "3.jpeg"), new Media(property, "4.jpeg"), new Media(property, "5.jpeg"), new Media(property, "6.jpeg"), new Media(property, "7.jpeg"), new Media(property, "8.jpeg"), new Media(property, "9.jpeg")));
         propertyService.getPropertyDao().create(property);
 
         // Rouse Tower
@@ -176,7 +175,11 @@ public class Bootstrap {
         property.setFeatures(Set.of(new Feature(property, "Sala de estar y principal"),
                 new Feature(property, "Terraza con vista panorámica"), new Feature(property, "Cocina"),
                 new Feature(property, "Comedor"), new Feature(property, "Área de lavado")));
-        property.setMedias(Set.of(new Media(property, "inside-01"), new Media(property, "inside-02")));
+        property.setMedias(Set.of(new Media(property, "1.jpg"), new Media(property, "2.jpg"),
+                        new Media(property, "3.jpg"), new Media(property, "4.jpg"), new Media(property, "5.jpg"),
+                        new Media(property, "6.jpg"), new Media(property, "7.jpg"), new Media(property, "8.jpg"),
+                        new Media(property, "9.jpg"), new Media(property, "10.jpg"), new Media(property, "11.jpg"),
+                        new Media(property, "12.jpg"), new Media(property, "13.jpg"), new Media(property, "14.jpg")));
         propertyService.getPropertyDao().create(property);
 
         // Residencial Alexander 3
@@ -204,7 +207,6 @@ public class Bootstrap {
         property.setFeatures(
                 Set.of(new Feature(property, "Sala"), new Feature(property, "Balcón"), new Feature(property, "Cocina"),
                         new Feature(property, "Comedor"), new Feature(property, "Área de lavado")));
-        property.setMedias(Set.of(new Media(property, "inside-01"), new Media(property, "inside-02")));
         propertyService.getPropertyDao().create(property);
 
         // Residencial Cadiz XIV
@@ -232,7 +234,9 @@ public class Bootstrap {
         property.setFeatures(Set.of(new Feature(property, "Sala"), new Feature(property, "Balcón"),
                 new Feature(property, "Cocina con desayunador"), new Feature(property, "Comedor"),
                 new Feature(property, "Área de lavado"), new Feature(property, "Baño de servicio")));
-        property.setMedias(Set.of(new Media(property, "inside-01"), new Media(property, "inside-02")));
+        property.setMedias(Set.of(new Media(property, "1.jpg"), new Media(property, "2.jpeg"),
+                        new Media(property, "3.jpg"), new Media(property, "4.jpg"), new Media(property, "5.jpg"),
+                        new Media(property, "6.jpg")));
         propertyService.getPropertyDao().create(property);
     }
 

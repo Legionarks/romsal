@@ -30,7 +30,7 @@ public class ApiResource {
     @GET
     @Path("search")
     public List<Property> search() {
-        return propertyService.getPropertyDao().find(null, null, null, null, null, null, null, null, null, null);
+        return propertyService.find(null, null, null, null, null, null, null, null, null);
     }
 
     @GET

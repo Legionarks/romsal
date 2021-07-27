@@ -80,19 +80,18 @@
                     <div class="col">
                         <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
                             <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-target="#modality" data-bs-toggle="modal"><img class="w-100 d-block img-slide" src="https://www.rocketmortgage.com/resources-cmsassets/RocketMortgage.com/Article_Images/Large_Images/TypesOfHomes/types-of-homes-hero.jpg" alt="Slide Image"></div>
-                                <div class="carousel-item" data-bs-target="#modality" data-bs-toggle="modal"><img class="w-100 d-block img-slide" src="https://static.dezeen.com/uploads/2020/02/house-in-the-landscape-niko-arcjitect-architecture-residential-russia-houses-khurtin_dezeen_2364_hero.jpg" alt="Slide Image"></div>
-                                <div class="carousel-item" data-bs-target="#modality" data-bs-toggle="modal"><img class="w-100 d-block img-slide" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png" alt="Slide Image"></div>
+                                {#if map.property.medias.isEmpty}
+                                <div class="carousel-item active" data-bs-target="#modality" data-bs-toggle="modal"><img class="w-100 d-block img-slide" src="/assets/img/no-media.jpg?h=9786fe98a947dad2fb12fdd8d457ac40" alt="Slide Image"></div>
+                                {#else}
+                                {#for media in map.property.medias}
+                                <div class="carousel-item {#if count eq 1}active{/if}" data-bs-target="#modality" data-bs-toggle="modal"><img class="w-100 d-block img-slide" src="/storage/property/{map.property.id}/{media.name}" alt="Slide Image"></div>
+                                {/for}
+                                {/if} 
                             </div>
                             <div>
                                 <!-- Start: Previous --><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><!-- End: Previous -->
                                 <!-- Start: Next --><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a><!-- End: Next -->
                             </div>
-                            <ol class="carousel-indicators">
-                                <li data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></li>
-                                <li data-bs-target="#carousel-1" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
-                            </ol>
                         </div>
                     </div>
                     <div class="col">
@@ -123,22 +122,22 @@
                 </div>
                 <div class="row d-none d-md-flex">
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[0].name}"></div>
                     </div>
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://www.rocketmortgage.com/resources-cmsassets/RocketMortgage.com/Article_Images/Large_Images/TypesOfHomes/types-of-homes-hero.jpg"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[1].name}"></div>
                     </div>
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg?crop=1.00xw:0.752xh;0,0.120xh&amp;resize=1200:*"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[2].name}"></div>
                     </div>
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[3].name}"></div>
                     </div>
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://cdn.vox-cdn.com/thumbor/6itLJS9BZ-B5gXPjM1AB_z-ZKVI=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/65890203/iStock_1067331614.7.jpg"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[4].name}"></div>
                     </div>
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="https://plantationhomes.com.au/cms_uploads/images/15861_six-stages-of-building-a-home.jpg"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[5].name}"></div>
                     </div>
                 </div>
             </div>
@@ -202,6 +201,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="/assets/js/info.js?h=b256a98c94183c9319bf58b1daacc19d"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmO0JHOHAXY2C3Ud49KbMSwFf3APep1Ow&amp;region=DO&amp;language=es&amp;callback=initMap"></script>
+
+    <script>
+        $("#summary").html($("#summary").text());
+    </script>
 </body>
 
 </html>

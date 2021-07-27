@@ -1,8 +1,10 @@
 package com.github.legionarks.dao.property;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Singleton;
@@ -16,6 +18,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import com.github.legionarks.dao.Datasource;
+import com.github.legionarks.model.currency.Currency;
 import com.github.legionarks.model.currency.CurrencyType;
 import com.github.legionarks.model.currency.Rate;
 import com.github.legionarks.model.property.Property;
@@ -31,7 +34,7 @@ public class PropertyDao extends Datasource<Property> {
 
     @Transactional
     public List<Property> find(Short size, String page, String address, String type, String room, String bath,
-            String category, String currency, BigDecimal[] price, List<Rate> rates) {
+            String category, Currency currency, BigDecimal[] price) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Property> query = builder.createQuery(clazz);
         TypedQuery<Property> enquiry;
@@ -68,32 +71,26 @@ public class PropertyDao extends Datasource<Property> {
         }
 
         // Price filter
+        /*
         if ((currency != null && !currency.isBlank()) && price != null) {
-            BigDecimal[] dop = { BigDecimal.ZERO, BigDecimal.ZERO }, usd = { BigDecimal.ZERO, BigDecimal.ZERO };
-
-            for (Rate rate : rates) {
-                if (rate.getOrigin().getType() == CurrencyType.USD && rate.getTarget().getType() == CurrencyType.DOP) {
-                    usd = new BigDecimal[] { price[0], price[1] };
-                    dop = new BigDecimal[] { price[0].multiply(rate.getExchange()),
-                            price[1].multiply(rate.getExchange()) };
-                    break;
-                } else if (rate.getOrigin().getType() == CurrencyType.DOP
-                        && rate.getTarget().getType() == CurrencyType.USD) {
-                    usd = new BigDecimal[] {
-                            price[0].divide(rate.getExchange(), rate.getExchange().scale(), RoundingMode.HALF_UP),
-                            price[1].divide(rate.getExchange(), rate.getExchange().scale(), RoundingMode.HALF_UP) };
-                    dop = new BigDecimal[] { price[0], price[1] };
-                    break;
+            BigDecimal[] range = new BigDecimal[] {BigDecimal.ZERO, BigDecimal.ZERO};
+            List<Predicate> prices = new ArrayList<>();
+            
+            for (CurrencyType money : CurrencyType.values()) {
+                if (money != code) {
+                    Arrays.stream(range).forEach(value -> value.multiply());
+                } else {
+                    range[0] = price[0];
+                    range[1] = price [1];
                 }
+
+                prices.add(builder.and(builder.like(property.get("currency").get("type").as(String.class), money),
+                            builder.ge(property.get("price"), price[0].multiply(rate.), builder.le(property.get("price"), dop[1])));
             }
 
-            conditions.add(builder.or(
-                    builder.and(builder.like(property.get("currency").get("type").as(String.class), CurrencyType.DOP.name()),
-                            builder.ge(property.get("price"), dop[0]), builder.le(property.get("price"), dop[1])),
-
-                    builder.and(builder.like(property.get("currency").get("type").as(String.class), CurrencyType.USD.name()),
-                            builder.ge(property.get("price"), usd[0]), builder.le(property.get("price"), usd[1]))));
+            conditions.add(builder.or(prices.toArray(new Predicate[] {})));
         }
+        */
 
         // Create statement
         query.where(conditions.toArray(new Predicate[] {}));

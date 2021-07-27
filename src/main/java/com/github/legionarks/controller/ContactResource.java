@@ -11,8 +11,6 @@ import javax.ws.rs.core.MediaType;
 import com.github.legionarks.service.ContactService;
 import com.github.legionarks.util.Templates;
 
-import org.eclipse.microprofile.config.ConfigProvider;
-
 import io.quarkus.mailer.Mail;
 import io.quarkus.mailer.Mailer;
 import io.quarkus.qute.TemplateInstance;
@@ -42,7 +40,7 @@ public class ContactResource {
         transcript.put("form-message", "contact.form.message");
         transcript.put("form-send", "contact.form.send");
         transcript.put("title-info", "contact.title.info");
-        
+
         transcript.put("contacts", service.getData().findAll());
 
         return Templates.contact().data("map", transcript.getMap());
@@ -51,8 +49,6 @@ public class ContactResource {
     @POST
     public void form(@FormParam("name") String name, @FormParam("telephone") String telephone,
             @FormParam("email") String email, @FormParam("message") String message) {
-        String from = ConfigProvider.getConfig().getValue("quarkus.mailer.from", String.class);
-
-        mailer.send(Mail.withText(from, "Nuevo mensaje", message + '\n' + name + '\n' + telephone));
+        mailer.send(Mail.withText(email, "Nuevo mensaje", message + '\n' + name + '\n' + telephone));
     }
 }

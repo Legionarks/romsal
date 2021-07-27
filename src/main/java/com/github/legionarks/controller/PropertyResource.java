@@ -87,7 +87,7 @@ public class PropertyResource {
         System.out.println("min:" + min);
         System.out.println("max:" + max);
 
-        service.getPropertyDao().find(size, page, address, type, bath, room, category, currency, new BigDecimal[]{min, max}, currencyService.getRateDao().findAll()).forEach(property -> System.out.println(property.getName()));
+        service.find(size, page, address, type, bath, room, category, currency, new BigDecimal[]{min, max}).forEach(property -> System.out.println(property.getName()));
         System.out.println("FIN");
 
         transcript.getMap().put("page", "property");
@@ -108,7 +108,7 @@ public class PropertyResource {
 
         transcript.put("pagination", 1);
 
-        // transcript.put("properties", service.getPropertyDao().findAll());
+        transcript.put("properties", service.find(size, page, address, type, bath, room, category, currency, new BigDecimal[]{min, max}));
 
         return Templates.search().data("map", transcript.getMap());
     }
