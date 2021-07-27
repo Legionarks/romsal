@@ -1,0 +1,28 @@
+<div class="card border rounded-0 card-property">
+    <div class="card textwhite text-white overflow-hidden">
+        <div class="row text-center card-img-overlay">
+            {#if property.outstanding}
+            <div class="col card-outstanding"><span class="bg-secondary position-absolute featured">Destacado</span></div>
+            {/if}
+            <div class="col-auto">
+                <small class="d-block px-2 py-1 card-category" style="background: rgb(47,79,79,0.8);font-size: 12px;">
+                    {#if property.category.type.name is 'SELL'}En venta
+                    {#else if property.category.type.name is 'RENT'}En alquiler
+                    {/if}
+                </small>
+            </div>
+        </div>
+        <img class="card-img w-100 d-block" src="{#if property.medias.isEmpty}/assets/img/no-media.jpg{#else}/storage/property/{property.id}/{property.medias.toArray[0].name}{/if}">
+        <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
+            <div class="description-wrapper">
+                <div class="text-start m-3">
+                    <h6 class="fw-bold card-price">{property.currency.type.code}${property.price}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body"><a class="card-link stretched-link" href="/property/info?id={property.id}"></a>
+        <h4 class="card-title"><i class="far fa-window-restore d-flex float-end flex-row-reverse text-primary"></i>{property.name}</h4>
+        <p class="card-text mt-2 pe-4 overflow-auto card-description" style="max-height: 120px;">{property.description}</p>
+    </div>
+</div>

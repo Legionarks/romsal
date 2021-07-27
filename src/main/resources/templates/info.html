@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
     <link rel="stylesheet" href="/assets/css/custom-colors.compiled.css?h=c56b082155acdada91dfdcb9dcf23b85">
     <link rel="stylesheet" href="/assets/css/generic/general.css?h=a7957f698ea1f4e9b33d41f9c0b2e442">
+    <link rel="stylesheet" href="/assets/css/generic/cards.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee&amp;display=swap">
@@ -76,7 +77,7 @@
         </div>
         <section class="bg-dark">
             <div class="container-md p-0 py-md-5">
-                <div class="row row-cols-1 row-cols-md-2 mb-4">
+                <div class="row row-cols-1 row-cols-md-2">
                     <div class="col">
                         <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
                             <div class="carousel-inner">
@@ -86,7 +87,7 @@
                                 {#for media in map.property.medias}
                                 <div class="carousel-item {#if count eq 1}active{/if}" data-bs-target="#modality" data-bs-toggle="modal"><img class="w-100 d-block img-slide" src="/storage/property/{map.property.id}/{media.name}" alt="Slide Image"></div>
                                 {/for}
-                                {/if} 
+                                {/if}
                             </div>
                             <div>
                                 <!-- Start: Previous --><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><!-- End: Previous -->
@@ -102,13 +103,13 @@
                                 <ul class="list-group list-group-horizontal text-nowrap text-center d-flex">
                                     {#for thing in map.property.attributes}
                                     {#if thing.attribute.type.name is 'ROOM'}
-                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bed p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Habitaciones"></i><span>1</span></li>
+                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bed p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Habitaciones"></i><span>{thing.amount}</span></li>
                                     {#else if thing.attribute.type.name is 'BATH'}
-                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bath p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Baños"></i><span>1</span></li>
+                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-bath p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Baños"></i><span>{thing.amount}</span></li>
                                     {#else if thing.attribute.type.name is 'PARKING'}
-                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-car-alt p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Parqueos"></i><span>1</span></li>
+                                    <li class="list-group-item border-0 p-2 bg-transparent"><i class="fas fa-car-alt p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Parqueos"></i><span>{thing.amount}</span></li>
                                     {#else if thing.attribute.type.name is 'AREA'}
-                                    <li class="list-group-item text-truncate border-0 p-2 bg-transparent"><i class="fas fa-ruler-combined p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Área"></i><span>1 m²</span></li>
+                                    <li class="list-group-item text-truncate border-0 p-2 bg-transparent"><i class="fas fa-ruler-combined p-2" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="Área"></i><span>{thing.amount} m²</span></li>
                                     {/if}
                                     {/for}
                                 </ul>
@@ -120,26 +121,30 @@
                         </div>
                     </div>
                 </div>
-                <div class="row d-none d-md-flex">
+                {#if map.property.medias.size gt 0}
+                <div class="row d-none d-md-flex mt-4">
+                    {#when map.property.medias.size}
+                    {#is > 6}
+                    {#for media in utils:subList(map.property.medias,6)}
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[0].name}"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{media.name}"></div>
                     </div>
+                    {/for}
+                    {#else}
+                    {#for media in map.property.medias}
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[1].name}"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{media.name}"></div>
                     </div>
+                    {/for}
+
+                    {#for index in utils:diff(6,map.property.medias.size)}
                     <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[2].name}"></div>
+                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/assets/img/no-image.png"></div>
                     </div>
-                    <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[3].name}"></div>
-                    </div>
-                    <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[4].name}"></div>
-                    </div>
-                    <div class="col-2">
-                        <div class="card thumbnail h-100"><img class="img-fluid card-img-top w-100 d-block h-100 img-thumbnail" src="/storage/property/{map.property.id}/{map.property.medias.toArray[5].name}"></div>
-                    </div>
+                    {/for}
+                    {/when}
                 </div>
+                {/if}
             </div>
         </section><!-- Start: Sidebar -->
         <div class="container">

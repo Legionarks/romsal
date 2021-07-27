@@ -10,7 +10,7 @@ window.onload = function () {
 };
 
 function carousels(out) {
-    document.getElementById("carousels").innerHTML = carrousel("carousel-lg", 3, out).outerHTML + carrousel("carousel-md", 2, out).outerHTML + carrousel("carousel-sm", 1, out).outerHTML;
+    //document.getElementById("carousels").innerHTML = carrousel("carousel-lg", 3, out).outerHTML + carrousel("carousel-md", 2, out).outerHTML;
 };
 
 function carrousel(id, size, out) {

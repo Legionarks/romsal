@@ -19,3 +19,6 @@
   cursor: pointer;
 }
 
+.thumbnail .img-thumbnail {
+  max-height: 150px;
+}

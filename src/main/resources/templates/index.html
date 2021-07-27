@@ -93,35 +93,18 @@
                     </div>
                     <div class="carousel slide carousel-dark d-none d-md-flex d-lg-none justify-content-center px-5" data-bs-ride="carousel" id="carousel-md">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            {#for property in map.properties}
+                            {#if count.mod(2) eq 0 or count eq 1}
+                            <div class="carousel-item {#if count eq 1}active{/if}">
                                 <div class="card-group gap-4">
-                                    <div class="card border rounded-0 card-property">
-                                        <div class="card textwhite text-white overflow-hidden">
-                                            <div class="row text-center card-img-overlay">
-                                                <div class="col card-outstanding"><span class="bg-secondary position-absolute featured">Destacado</span></div>
-                                                <div class="col-auto"><small class="d-block px-2 py-1 card-category" style="background: rgb(47,79,79,0.8);font-size: 12px;">Venta / Alquiler</small></div>
-                                            </div><img class="card-img w-100 d-block" src="/assets/img/no-media.jpg?h=9786fe98a947dad2fb12fdd8d457ac40">
-                                            <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                                                <div class="description-wrapper">
-                                                    <div class="text-start m-3">
-                                                        <h6 class="fw-bold card-price">US$1</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body"><a class="card-link stretched-link" href="/info.html"></a>
-                                            <h4 class="card-title"><i class="far fa-window-restore d-flex float-end flex-row-reverse text-primary"></i>Nombre</h4>
-                                            <p class="card-text mt-2 pe-4 overflow-auto card-description" style="max-height: 120px;">. . .</p>
-                                        </div>
-                                    </div>
-                                    <div class="card border rounded-0 card-comming">
-                                        <div class="card textwhite text-white overflow-hidden"><img class="card-img w-100 d-block" src="/assets/img/construction.jpg?h=cc452b4115ab7c976395bd1d4181c772"></div>
-                                        <div class="card-body"><a class="card-link stretched-link"></a>
-                                            <h4 class="card-title">¡Proximamente!</h4>
-                                        </div>
-                                    </div>
+                            {/if}
+                                    {#include includes/card/}
+                                    {#if !hasNext}{#include includes/card-empty/}{/if}
+                            {#if count.mod(2) eq 1}
                                 </div>
                             </div>
+                            {/if}
+                            {/for}
                         </div>
                         <div>
                             <!-- Start: Previous --><a class="carousel-control-prev justify-content-start w-auto" href="#carousel-md" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"></span><span class="visually-hidden">Previous</span></a><!-- End: Previous -->
@@ -130,29 +113,13 @@
                     </div>
                     <div class="carousel slide carousel-dark d-sm-flex d-md-none justify-content-center px-5" data-bs-ride="carousel" id="carousel-sm">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            {#for property in map.properties}
+                            <div class="carousel-item {#if count eq 1}active{/if}">
                                 <div class="card-group gap-4">
-                                    <div class="card border rounded-0 card-property">
-                                        <div class="card textwhite text-white overflow-hidden">
-                                            <div class="row text-center card-img-overlay">
-                                                <div class="col card-outstanding"><span class="bg-secondary position-absolute featured">Destacado</span></div>
-                                                <div class="col-auto"><small class="d-block px-2 py-1 card-category" style="background: rgb(47,79,79,0.8);font-size: 12px;">Venta / Alquiler</small></div>
-                                            </div><img class="card-img w-100 d-block" src="/assets/img/no-media.jpg?h=9786fe98a947dad2fb12fdd8d457ac40">
-                                            <div class="card-img-overlay d-flex flex-column justify-content-end p-0">
-                                                <div class="description-wrapper">
-                                                    <div class="text-start m-3">
-                                                        <h6 class="fw-bold card-price">US$1</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body"><a class="card-link stretched-link" href="/info.html"></a>
-                                            <h4 class="card-title"><i class="far fa-window-restore d-flex float-end flex-row-reverse text-primary"></i>Nombre</h4>
-                                            <p class="card-text mt-2 pe-4 overflow-auto card-description" style="max-height: 120px;">. . .</p>
-                                        </div>
-                                    </div>
+                                    {#include includes/card.html/}
                                 </div>
                             </div>
+                            {/for}
                         </div>
                         <div>
                             <!-- Start: Previous --><a class="carousel-control-prev justify-content-start w-auto" href="#carousel-sm" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle"></span><span class="visually-hidden">Previous</span></a><!-- End: Previous -->

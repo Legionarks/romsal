@@ -1,5 +1,9 @@
 package com.github.legionarks.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateExtension;
 import io.quarkus.qute.TemplateInstance;
@@ -23,6 +27,14 @@ public class Templates {
 
     @TemplateExtension(namespace = "utils")
     public static class Utils {
+
+        public static <T> List<T> subList(Set<T> set, int size) {
+            return new ArrayList<>(set).subList(0, size);
+        }
+
+        public static int diff(int number, int with) {
+            return number - with;
+        }
 
         public static int[] range(int page, int total, int range) {
             final int[] pages;

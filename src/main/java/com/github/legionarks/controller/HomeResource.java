@@ -41,6 +41,8 @@ public class HomeResource {
         transcript.put("service-3",
                 List.of(transcript.get("home.service.title.3"), transcript.get("home.service.phrase.3")));
 
+        transcript.put("properties", propertyService.getPropertyDao().findAll());
+
         return Templates.index().data("map", transcript.getMap());
     }
 }
