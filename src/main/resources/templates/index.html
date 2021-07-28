@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <header>{#include navbar/}</header>
+    <header>{#include includes/navbar/}</header>
     <main>
         <div class="card slider overflow-hidden border-0">
             <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false" data-bs-keyboard="false" id="carousel-1">
@@ -56,12 +56,12 @@
                                 <div class="card-group gap-4">
                                     {/if}
                                     {#include includes/card/}
-                                    {#if !hasNext}
+                                    {#if hasNext is false}
                                     {#for i in utils:diff(3,map.properties.size.mod(3))}
                                     {#include includes/card-empty/}
                                     {/for}
                                     {/if}
-                                    {#if count.mod(3) eq 0 || hasNext is false}
+                                    {#if count.mod(3) eq 0 or hasNext is false}
                                 </div>
                             </div>
                             {/if}
@@ -80,8 +80,8 @@
                                 <div class="card-group gap-4">
                                     {/if}
                                     {#include includes/card/}
-                                    {#if !hasNext}{#include includes/card-empty/}{/if}
-                                    {#if count.mod(2) eq 0 || hasNext is false}
+                                    {#if hasNext is false}{#include includes/card-empty/}{/if}
+                                    {#if count.mod(2) eq 0 or hasNext is false}
                                 </div>
                             </div>
                             {/if}
@@ -130,7 +130,7 @@
             </section>
         </div>
     </main>
-    <footer>{#include footer/}</footer>
+    <footer>{#include includes/footer/}</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/bs-init.js?h=7265b1488dcf69b8a52816ef73c57595"></script>

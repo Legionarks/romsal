@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <header>{#include navbar/}</header>
+    <header>{#include includes/navbar/}</header>
     <main>
         <section class="highlight">
             <div class="container">
@@ -60,10 +60,12 @@
                                                 {/for}
                                                 {/if}
                                             </div>
+                                            {#if !property.medias.isEmpty}
                                             <div>
                                                 <!-- Start: Previous --><a class="carousel-control-prev" href="#carousel-{count}" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><!-- End: Previous -->
                                                 <!-- Start: Next --><a class="carousel-control-next" href="#carousel-{count}" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a><!-- End: Next -->
                                             </div>
+                                            {/if}
                                         </div>
                                         <div class="row text-center card-img-overlay">
                                             {#if property.outstanding}
@@ -162,7 +164,7 @@
             </div>
         </div><!-- End: Sidebar -->
     </main>
-    <footer>{#include footer/}</footer>
+    <footer>{#include includes/footer/}</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/bs-init.js?h=7265b1488dcf69b8a52816ef73c57595"></script>

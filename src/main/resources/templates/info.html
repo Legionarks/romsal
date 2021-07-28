@@ -18,8 +18,9 @@
 </head>
 
 <body>
-    <header>{#include navbar/}</header>
+    <header>{#include includes/navbar/}</header>
     <main>
+        {#if !map.property.medias.isEmpty}
         <div class="modal fade" role="dialog" tabindex="-1" id="modality">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -75,6 +76,7 @@
                 </div>
             </div>
         </div>
+        {/if}
         <section class="bg-dark">
             <div class="container-md p-0 py-md-5">
                 <div class="row row-cols-1 row-cols-md-2">
@@ -89,10 +91,12 @@
                                 {/for}
                                 {/if}
                             </div>
+                            {#if !map.property.medias.isEmpty}
                             <div>
                                 <!-- Start: Previous --><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><!-- End: Previous -->
                                 <!-- Start: Next --><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a><!-- End: Next -->
                             </div>
+                            {/if}
                         </div>
                     </div>
                     <div class="col">
@@ -116,7 +120,7 @@
                                 <p class="card-text mt-2 pe-4 overflow-auto card-description" style="max-height: 120px;">{map.property.description}</p>
                             </div>
                             <div class="card-footer d-flex">
-                                <h2 class="my-auto card-price">{map.property.currency.type.code}${map.property.price}</h2>
+                                <h5 class="my-auto card-price">{map.property.currency.type.code}${map.property.price}</h2>
                             </div>
                         </div>
                     </div>
@@ -199,7 +203,7 @@
         </div><!-- End: Sidebar -->
         <div id="map" class="w-100" style="height: 400px;"></div>
     </main>
-    <footer>{#include footer/}</footer>
+    <footer>{#include includes/footer/}</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/bs-init.js?h=7265b1488dcf69b8a52816ef73c57595"></script>
