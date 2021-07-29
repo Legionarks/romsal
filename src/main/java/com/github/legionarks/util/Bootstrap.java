@@ -73,16 +73,7 @@ public class Bootstrap {
         contact.setCity("Santiago de los Caballeros");
         contact.setAddress("C/ Parada Vieja, Res. María Alejandra I 2do Nivel");
         contact.setPhone("(809) 820 - 0897");
-        location.set(18.500000F, -69.983300F);
-        contact.setLocation(location);
-        contactService.getData().create(contact);
-
-        contact = new Contact();
-        location = new Location();
-        contact.setCity("Santo Domingo");
-        contact.setAddress("Av. Independencia");
-        contact.setPhone("(809) 580 - 1111");
-        location.set(18.500000F, -69.983300F);
+        location.set(19.4510266F, -70.6517572F);
         contact.setLocation(location);
         contactService.getData().create(contact);
     }
