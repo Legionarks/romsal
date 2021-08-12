@@ -1,4 +1,4 @@
-package com.github.legionarks.controller;
+package com.github.legionarks.controller.admin;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
@@ -8,8 +8,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.github.legionarks.dao.UserDao;
-import com.github.legionarks.util.Templates;
 
+import io.quarkus.qute.Location;
+import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
 @Path("login")
@@ -18,10 +19,13 @@ public class LoginResource {
     @Inject
     UserDao data;
 
+    @Location("common/index.html")
+    Template index;
+
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance login() {
-        return Templates.index();
+        return index.instance();
     }
 
     @GET
@@ -29,6 +33,6 @@ public class LoginResource {
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({ "ADMIN" })
     public TemplateInstance test() {
-        return Templates.index();
+        return index.instance();
     }
 }

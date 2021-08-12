@@ -1,4 +1,4 @@
-package com.github.legionarks.controller;
+package com.github.legionarks.controller.common;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -10,11 +10,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.github.legionarks.controller.Transcript;
 import com.github.legionarks.model.property.Property;
 import com.github.legionarks.service.CurrencyService;
 import com.github.legionarks.service.PropertyService;
-import com.github.legionarks.util.Templates;
 
+import io.quarkus.qute.Location;
+import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
 @Path("property")
@@ -26,10 +28,19 @@ public class PropertyResource {
     @Inject
     CurrencyService currencyService;
 
+    @Location("common/info.html")
+    Template info;
+
+    @Location("common/properties.html")
+    Template properties;
+
+    @Location("common/search.html")
+    Template search;
+
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance main() {
-        final Transcript transcript = new Transcript().defaults();
+        final Transcript transcript = new CommonTranscript().defaults();
 
         transcript.put("title", "property.search.title");
         transcript.put("phrase", "property.search.phrase");
@@ -41,14 +52,14 @@ public class PropertyResource {
         transcript.put("form-currency", "property.search.form.currency");
         transcript.put("form-search", "property.search");
 
-        return Templates.properties().data("map", transcript.getMap());
+        return properties.data("map", transcript.getMap());
     }
 
     @GET
     @Path("info")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance info(@QueryParam("id") Long id) {
-        final Transcript transcript = new Transcript();
+        final Transcript transcript = new CommonTranscript();
         Property property = service.getPropertyDao().find(id);
 
         transcript.getMap().put("page", "property");
@@ -63,7 +74,7 @@ public class PropertyResource {
 
         transcript.put("property", property);
 
-        return Templates.info().data("map", transcript.getMap());
+        return info.data("map", transcript.getMap());
     }
 
     @GET
@@ -73,7 +84,7 @@ public class PropertyResource {
             @QueryParam("type") String type, @QueryParam("room") String room, @QueryParam("bath") String bath,
             @QueryParam("category") String category, @QueryParam("currency") String currency,
             @QueryParam("price-min") BigDecimal min, @QueryParam("price-max") BigDecimal max) {
-        final Transcript transcript = new Transcript();
+        final Transcript transcript = new CommonTranscript();
         final Short size = 10;
 
         System.out.println("INI");
@@ -110,7 +121,7 @@ public class PropertyResource {
 
         transcript.put("properties", service.find(size, page, address, type, bath, room, category, currency, new BigDecimal[]{min, max}));
 
-        return Templates.search().data("map", transcript.getMap());
+        return search.data("map", transcript.getMap());
     }
 
     private enum Category {

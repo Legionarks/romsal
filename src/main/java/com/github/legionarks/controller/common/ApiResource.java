@@ -1,4 +1,4 @@
-package com.github.legionarks.controller;
+package com.github.legionarks.controller.common;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.github.legionarks.controller;
+package com.github.legionarks.controller.common;
 
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
@@ -8,13 +8,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.github.legionarks.controller.Transcript;
 import com.github.legionarks.service.ContactService;
-import com.github.legionarks.util.Templates;
 
 import org.eclipse.microprofile.config.ConfigProvider;
 
 import io.quarkus.mailer.Mail;
 import io.quarkus.mailer.Mailer;
+import io.quarkus.qute.Location;
+import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
 @Path("contact")
@@ -26,10 +28,13 @@ public class ContactResource {
     @Inject
     Mailer mailer;
 
+    @Location("common/contact.html")
+    Template contact;
+
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance main() {
-        final Transcript transcript = new Transcript().defaults();
+        final Transcript transcript = new CommonTranscript().defaults();
 
         transcript.getMap().put("page", "contact");
         transcript.defaults();
@@ -45,7 +50,7 @@ public class ContactResource {
 
         transcript.put("contacts", service.getData().findAll());
 
-        return Templates.contact().data("map", transcript.getMap());
+        return contact.data("map", transcript.getMap());
     }
 
     @POST
