@@ -60,8 +60,8 @@ public class Bootstrap {
     private void users() {
         userService.roles();
 
-        // userService.add("user", "user", "USER");
-        // userService.add("admin", "admin", "ADMIN");
+        userService.add("user", "user", "USER");
+        userService.add("admin", "admin", "ADMIN");
     }
 
     private void contact() {

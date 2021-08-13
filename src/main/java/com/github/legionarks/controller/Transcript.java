@@ -8,7 +8,6 @@ import com.github.legionarks.util.Messages;
 public abstract class Transcript {
 
     protected final Map<String, Object> map;
-
     protected final Messages messages;
 
     public Transcript() {

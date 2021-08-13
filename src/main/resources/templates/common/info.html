@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <header>{#include includes/navbar/}</header>
+    <header>{#include common/includes/navbar/}</header>
     <main>
         {#if !map.property.medias.isEmpty}
         <div class="modal fade" role="dialog" tabindex="-1" id="modality">
@@ -209,7 +209,7 @@
         </div><!-- End: Sidebar -->
         <div id="map" class="w-100" style="height: 400px;"></div>
     </main>
-    <footer>{#include includes/footer/}</footer>
+    <footer>{#include common/includes/footer/}</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/bs-init.js?h=7265b1488dcf69b8a52816ef73c57595"></script>

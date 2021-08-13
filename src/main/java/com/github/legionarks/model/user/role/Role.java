@@ -2,8 +2,6 @@ package com.github.legionarks.model.user.role;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,15 +19,21 @@ public class Role {
     private Short id;
 
     @RolesValue
-    @Enumerated(EnumType.STRING)
     @Column(name = "TYPE", unique = true)
-    private RoleType type;
+    private String type;
 
-    public RoleType getType() {
+    public Role() {
+    }
+
+    public Role(RoleType type) {
+        this.type = type.name();
+    }
+
+    public String getType() {
         return type;
     }
 
-    public void setType(RoleType type) {
+    public void setType(String type) {
         this.type = type;
     }
 

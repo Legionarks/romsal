@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <header>{#include includes/navbar/}</header>
+    <header>{#include common/includes/navbar/}</header>
     <main>
         <div class="card slider overflow-hidden border-0">
             <div class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-pause="false" data-bs-keyboard="false" id="carousel-1">
@@ -61,10 +61,10 @@
                             <div class="carousel-item {#if count eq 1}active{/if}">
                                 <div class="card-group gap-4">
                                     {/if}
-                                    {#include includes/card/}
+                                    {#include common/includes/card/}
                                     {#if hasNext is false}
                                     {#for i in utils:diff(3,map.properties.size.mod(3))}
-                                    {#include includes/card-empty/}
+                                    {#include common/includes/card-empty/}
                                     {/for}
                                     {/if}
                                     {#if count.mod(3) eq 0 or hasNext is false}
@@ -85,8 +85,8 @@
                             <div class="carousel-item {#if count eq 1}active{/if}">
                                 <div class="card-group gap-4">
                                     {/if}
-                                    {#include includes/card/}
-                                    {#if hasNext is false}{#include includes/card-empty/}{/if}
+                                    {#include common/includes/card/}
+                                    {#if hasNext is false}{#include common/includes/card-empty/}{/if}
                                     {#if count.mod(2) eq 0 or hasNext is false}
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                             {#for property in map.properties}
                             <div class="carousel-item {#if count eq 1}active{/if}">
                                 <div class="card-group gap-4">
-                                    {#include includes/card.html/}
+                                    {#include common/includes/card.html/}
                                 </div>
                             </div>
                             {/for}
@@ -136,7 +136,7 @@
             </section>
         </div>
     </main>
-    <footer>{#include includes/footer/}</footer>
+    <footer>{#include common/includes/footer/}</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/bs-init.js?h=7265b1488dcf69b8a52816ef73c57595"></script>

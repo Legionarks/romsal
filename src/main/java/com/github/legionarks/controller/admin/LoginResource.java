@@ -13,19 +13,19 @@ import io.quarkus.qute.Location;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
-@Path("login")
+@Path("admin/login")
 public class LoginResource {
 
     @Inject
     UserDao data;
 
-    @Location("common/index.html")
-    Template index;
+    @Location("admin/login.html")
+    Template login;
 
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance login() {
-        return index.instance();
+        return login.instance();
     }
 
     @GET
@@ -33,6 +33,6 @@ public class LoginResource {
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({ "ADMIN" })
     public TemplateInstance test() {
-        return index.instance();
+        return login.instance();
     }
 }
