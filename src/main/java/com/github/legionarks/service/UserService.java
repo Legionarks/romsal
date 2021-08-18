@@ -47,13 +47,13 @@ public class UserService {
 
         groups.forEach(type -> roles.add(roleDao.find(type)));
 
-        this.add(username, password, roles);
+        add(username, password, roles);
     }
 
     public void add(String username, String password, String groups) {
         List<RoleType> roles = Arrays.stream(groups.split(",\\s+")).map(RoleType::valueOf).collect(Collectors.toList());
 
-        this.add(username, password, roles);
+        add(username, password, roles);
     }
 
 }

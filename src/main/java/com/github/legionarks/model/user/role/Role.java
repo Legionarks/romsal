@@ -14,7 +14,7 @@ import io.quarkus.security.jpa.RolesValue;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private Short id;
 
