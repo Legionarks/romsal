@@ -1,0 +1,12 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation 'gradle.plugin.io.quarkus:quarkus-gradle-plugin:2.2.2.Final'
+    // implementation "${quarkusPlugin}:${quarkusPluginVersion}"
+}

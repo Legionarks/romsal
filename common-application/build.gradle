@@ -1,0 +1,9 @@
+plugins {
+    id 'romsal.quarkus-application'
+}
+
+dependencies {
+}
+
+group "${group}.common-application"
+version '2.0.0-SNAPSHOT'
